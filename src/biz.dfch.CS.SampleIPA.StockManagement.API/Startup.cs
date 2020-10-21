@@ -1,15 +1,9 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using biz.dfch.CS.SampleIPA.StockManagement.API.Data;
 using Microsoft.AspNet.OData.Extensions;
@@ -52,9 +46,14 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API
             app.UseRouting();
             app.UseAuthorization();
 
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+
             app.UseMvc(routeBuilder =>
             {
-                routeBuilder.Select().Filter();
+                routeBuilder.Select().Expand().Count().Filter().OrderBy().MaxTop(100).SkipToken().Build();
                 routeBuilder.MapODataServiceRoute("odata", "odata", GetEdmModel());
             });
         }
