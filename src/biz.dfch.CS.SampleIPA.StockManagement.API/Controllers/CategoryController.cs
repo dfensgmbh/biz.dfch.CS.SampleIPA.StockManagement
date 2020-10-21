@@ -37,7 +37,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Controllers
 
         [ODataRoute("({key})")]
         [HttpGet]
-        public IActionResult GetCategoryById([FromODataUri] int key)
+        public IActionResult GetCategoryByKey([FromODataUri] int key)
         {
             var category = _context.Categories.Find(key);
             
