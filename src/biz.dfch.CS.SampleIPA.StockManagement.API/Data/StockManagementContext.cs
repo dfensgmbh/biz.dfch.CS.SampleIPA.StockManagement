@@ -8,8 +8,8 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Data
         public StockManagementContext(DbContextOptions<StockManagementContext> options)
             : base(options) { }
 
-        public DbSet<Product> Products;
-        public DbSet<Booking> Bookings;
-        public DbSet<Category> Categories;
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }
