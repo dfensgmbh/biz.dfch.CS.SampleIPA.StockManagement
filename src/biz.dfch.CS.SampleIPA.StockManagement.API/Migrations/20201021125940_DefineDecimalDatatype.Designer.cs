@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using biz.dfch.CS.SampleIPA.StockManagement.API.Data;
 
 namespace biz.dfch.CS.SampleIPA.StockManagement.API.Migrations
 {
     [DbContext(typeof(StockManagementContext))]
-    partial class StockManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20201021125940_DefineDecimalDatatype")]
+    partial class DefineDecimalDatatype
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,43 +52,11 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Elektronik"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Haushalt"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Möbel"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Kleidung"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Sport und Freizeit"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Diverses"
-                        });
                 });
 
             modelBuilder.Entity("biz.dfch.CS.SampleIPA.StockManagement.API.Models.Product", b =>
@@ -100,10 +70,10 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("MaterialNumber")
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("PricePerPiece")
                         .HasColumnType("decimal(10,2)");
