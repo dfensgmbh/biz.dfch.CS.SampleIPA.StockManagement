@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using biz.dfch.CS.SampleIPA.StockManagement.API.Data;
 
 namespace biz.dfch.CS.SampleIPA.StockManagement.API
 {
@@ -26,6 +28,9 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddDbContext<StockManagementContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString(nameof(StockManagementContext))));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
