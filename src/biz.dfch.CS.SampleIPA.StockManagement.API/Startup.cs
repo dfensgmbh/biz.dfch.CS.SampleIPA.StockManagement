@@ -12,6 +12,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using biz.dfch.CS.SampleIPA.StockManagement.API.Data;
+using Microsoft.AspNet.OData.Extensions;
+using Microsoft.AspNet.OData.Builder;
+using biz.dfch.CS.SampleIPA.StockManagement.API.Models;
+using Microsoft.OData.Edm;
 
 namespace biz.dfch.CS.SampleIPA.StockManagement.API
 {
@@ -27,7 +31,10 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers(mvcOptions =>
+                mvcOptions.EnableEndpointRouting = false);
+
+            services.AddOData();
 
             services.AddDbContext<StockManagementContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString(nameof(StockManagementContext))));
@@ -42,15 +49,23 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API
             }
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
+            app.UseMvc(routeBuilder =>
             {
-                endpoints.MapControllers();
+                routeBuilder.Select().Filter();
+                routeBuilder.MapODataServiceRoute("odata", "odata", GetEdmModel());
             });
+        }
+
+        private static IEdmModel GetEdmModel()
+        {
+            var builder = new ODataConventionModelBuilder();
+            builder.EntitySet<Product>(nameof(Product));
+            builder.EntitySet<Booking>(nameof(Booking));
+            builder.EntitySet<Category>(nameof(Category));
+            return builder.GetEdmModel();
         }
     }
 }
