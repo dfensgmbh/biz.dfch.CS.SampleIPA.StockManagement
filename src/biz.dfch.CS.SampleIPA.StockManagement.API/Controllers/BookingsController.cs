@@ -38,7 +38,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Controllers
             var booking = new Booking
             {
                 Amount = bookingDto.Amount,
-                DataTime = new DateTime(),
+                DataTime = DateTime.Now,
                 Product = product
             };
 
