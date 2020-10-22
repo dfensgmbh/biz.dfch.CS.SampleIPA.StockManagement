@@ -1,0 +1,45 @@
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:DataServices>
+    <Schema Namespace="biz.dfch.CS.SampleIPA.StockManagement.API.Models" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EntityType Name="Product">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" />
+        <Property Name="MaterialNumber" Type="Edm.String" />
+        <Property Name="Quantity" Type="Edm.Int32" Nullable="false" />
+        <Property Name="PricePerPiece" Type="Edm.Decimal" Nullable="false" />
+        <Property Name="WeightInKg" Type="Edm.Decimal" Nullable="false" />
+        <NavigationProperty Name="Category" Type="biz.dfch.CS.SampleIPA.StockManagement.API.Models.Category" />
+      </EntityType>
+      <EntityType Name="Booking">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Amount" Type="Edm.Int32" Nullable="false" />
+        <Property Name="DataTime" Type="Edm.DateTimeOffset" Nullable="false" />
+        <NavigationProperty Name="Product" Type="biz.dfch.CS.SampleIPA.StockManagement.API.Models.Product" />
+      </EntityType>
+      <EntityType Name="Category">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" />
+      </EntityType>
+    </Schema>
+    <Schema Namespace="Default" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EntityContainer Name="Container">
+        <EntitySet Name="Product" EntityType="biz.dfch.CS.SampleIPA.StockManagement.API.Models.Product">
+          <NavigationPropertyBinding Path="Category" Target="Category" />
+        </EntitySet>
+        <EntitySet Name="Booking" EntityType="biz.dfch.CS.SampleIPA.StockManagement.API.Models.Booking">
+          <NavigationPropertyBinding Path="Product" Target="Product" />
+        </EntitySet>
+        <EntitySet Name="Category" EntityType="biz.dfch.CS.SampleIPA.StockManagement.API.Models.Category" />
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>
