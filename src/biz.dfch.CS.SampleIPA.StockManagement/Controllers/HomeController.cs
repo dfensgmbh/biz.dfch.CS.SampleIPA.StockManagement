@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using biz.dfch.CS.SampleIPA.StockManagement.Models;
+using Default;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using biz.dfch.CS.SampleIPA.StockManagement.Models;
-using Default;
-using Microsoft.Extensions.Configuration;
 
 namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
 {
@@ -27,6 +23,17 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
             var viewModel = new IndexViewModel
             {
                 Products = products.ToList()
+            };
+
+            return View(viewModel);
+        }
+        public IActionResult Create()
+        {
+            var categories = container.Categories;
+
+            var viewModel = new CreateViewModel
+            {
+                Categories = categories.ToList()
             };
 
             return View(viewModel);
