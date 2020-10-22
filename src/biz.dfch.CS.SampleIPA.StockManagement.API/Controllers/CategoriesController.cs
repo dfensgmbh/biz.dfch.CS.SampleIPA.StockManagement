@@ -36,8 +36,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Controllers
         [HttpGet]
         public IActionResult GetCategoryByKey([FromODataUri] int key)
         {
-            var category = _context.Categories.Find(key);
-            
+            var category = _context.Categories.Find(key);            
             if(default == category)
             {
                 return NotFound();

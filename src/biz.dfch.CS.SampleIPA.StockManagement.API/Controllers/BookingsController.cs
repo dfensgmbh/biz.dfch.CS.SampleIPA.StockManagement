@@ -30,6 +30,11 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Controllers
         public IActionResult CreateBooking([FromBody] BookingDto bookingDto)
         {
             var product = _context.Products.Find(bookingDto.ProductId);
+            if(default == product)
+            {
+                return NotFound();
+            }
+
             var booking = new Booking
             {
                 Amount = bookingDto.Amount,

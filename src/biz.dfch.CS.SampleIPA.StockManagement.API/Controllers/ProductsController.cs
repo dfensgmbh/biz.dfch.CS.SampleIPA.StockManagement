@@ -50,8 +50,13 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Controllers
 
         [ODataRoute]
         [HttpPost]
-        public CreatedODataResult<Product> CreateProduct([FromBody] Product product)
+        public IActionResult CreateProduct([FromBody] Product product)
         {
+            if(default == product)
+            {
+                return BadRequest();
+            }
+
             _context.Products.Add(product);
             _context.SaveChanges();
 
@@ -63,6 +68,10 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Controllers
         public IActionResult EditProduct([FromODataUri] int key, [FromBody] Delta<Product> delta)
         {
             var product = _context.Products.Find(key);
+            if(default == product)
+            {
+                return NotFound();
+            }
 
             delta.Patch(product);
             _context.SaveChanges();
@@ -75,6 +84,10 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Controllers
         public IActionResult DeleteProduct([FromODataUri] int key)
         {
             var product = _context.Products.Find(key);
+            if(default == product)
+            {
+                return NotFound();
+            }
 
             _context.Products.Remove(product);
             _context.SaveChanges();
