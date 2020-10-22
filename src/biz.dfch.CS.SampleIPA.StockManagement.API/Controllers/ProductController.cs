@@ -4,10 +4,7 @@ using Microsoft.AspNet.OData;
 using Microsoft.AspNet.OData.Results;
 using Microsoft.AspNet.OData.Routing;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace biz.dfch.CS.SampleIPA.StockManagement.API.Controllers
 {
@@ -59,6 +56,18 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Controllers
             _context.SaveChanges();
 
             return Created(product);
+        }
+
+        [ODataRoute("({key})")]
+        [HttpPatch]
+        public IActionResult EditProduct([FromODataUri] int key, [FromBody] Delta<Product> delta)
+        {
+            var product = _context.Products.Find(key);
+
+            delta.Patch(product);
+            _context.SaveChanges();
+
+            return Updated(delta);
         }
     }
 }
