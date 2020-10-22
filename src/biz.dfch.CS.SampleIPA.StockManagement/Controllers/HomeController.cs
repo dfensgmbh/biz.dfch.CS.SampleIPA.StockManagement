@@ -22,7 +22,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
 
         public IActionResult Index()
         {
-            var products = container.Product;
+            var products = container.Products;
 
             var viewModel = new ProductsViewModel
             {

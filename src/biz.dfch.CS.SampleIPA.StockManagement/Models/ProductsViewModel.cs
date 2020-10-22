@@ -5,6 +5,6 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Models
 {
     public class ProductsViewModel
     {
-        public List<Product> Products;
+        public List<Products> Products;
     }
 }

@@ -1,7 +1,7 @@
 <edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
   <edmx:DataServices>
     <Schema Namespace="biz.dfch.CS.SampleIPA.StockManagement.API.Models" xmlns="http://docs.oasis-open.org/odata/ns/edm">
-      <EntityType Name="Product">
+      <EntityType Name="Products">
         <Key>
           <PropertyRef Name="Id" />
         </Key>
@@ -11,18 +11,18 @@
         <Property Name="Quantity" Type="Edm.Int32" Nullable="false" />
         <Property Name="PricePerPiece" Type="Edm.Decimal" Nullable="false" />
         <Property Name="WeightInKg" Type="Edm.Decimal" Nullable="false" />
-        <NavigationProperty Name="Category" Type="biz.dfch.CS.SampleIPA.StockManagement.API.Models.Category" />
+        <NavigationProperty Name="Category" Type="biz.dfch.CS.SampleIPA.StockManagement.API.Models.Categories" />
       </EntityType>
-      <EntityType Name="Booking">
+      <EntityType Name="Bookings">
         <Key>
           <PropertyRef Name="Id" />
         </Key>
         <Property Name="Id" Type="Edm.Int32" Nullable="false" />
         <Property Name="Amount" Type="Edm.Int32" Nullable="false" />
         <Property Name="DataTime" Type="Edm.DateTimeOffset" Nullable="false" />
-        <NavigationProperty Name="Product" Type="biz.dfch.CS.SampleIPA.StockManagement.API.Models.Product" />
+        <NavigationProperty Name="Product" Type="biz.dfch.CS.SampleIPA.StockManagement.API.Models.Products" />
       </EntityType>
-      <EntityType Name="Category">
+      <EntityType Name="Categories">
         <Key>
           <PropertyRef Name="Id" />
         </Key>
@@ -32,13 +32,13 @@
     </Schema>
     <Schema Namespace="Default" xmlns="http://docs.oasis-open.org/odata/ns/edm">
       <EntityContainer Name="Container">
-        <EntitySet Name="Product" EntityType="biz.dfch.CS.SampleIPA.StockManagement.API.Models.Product">
-          <NavigationPropertyBinding Path="Category" Target="Category" />
+        <EntitySet Name="Products" EntityType="biz.dfch.CS.SampleIPA.StockManagement.API.Models.Products">
+          <NavigationPropertyBinding Path="Category" Target="Categories" />
         </EntitySet>
-        <EntitySet Name="Booking" EntityType="biz.dfch.CS.SampleIPA.StockManagement.API.Models.Booking">
-          <NavigationPropertyBinding Path="Product" Target="Product" />
+        <EntitySet Name="Bookings" EntityType="biz.dfch.CS.SampleIPA.StockManagement.API.Models.Bookings">
+          <NavigationPropertyBinding Path="Product" Target="Products" />
         </EntitySet>
-        <EntitySet Name="Category" EntityType="biz.dfch.CS.SampleIPA.StockManagement.API.Models.Category" />
+        <EntitySet Name="Categories" EntityType="biz.dfch.CS.SampleIPA.StockManagement.API.Models.Categories" />
       </EntityContainer>
     </Schema>
   </edmx:DataServices>

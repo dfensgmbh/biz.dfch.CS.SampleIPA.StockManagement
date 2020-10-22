@@ -1,14 +1,13 @@
 ﻿using biz.dfch.CS.SampleIPA.StockManagement.API.Data;
 using biz.dfch.CS.SampleIPA.StockManagement.API.Models;
 using Microsoft.AspNet.OData;
-using Microsoft.AspNet.OData.Results;
 using Microsoft.AspNet.OData.Routing;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
 namespace biz.dfch.CS.SampleIPA.StockManagement.API.Controllers
 {
-    [ODataRoutePrefix(nameof(Product))]
+    [ODataRoutePrefix(nameof(Products))]
     public class ProductsController : ODataController
     {
         private readonly StockManagementContext _context;
@@ -50,7 +49,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Controllers
 
         [ODataRoute]
         [HttpPost]
-        public IActionResult CreateProduct([FromBody] Product product)
+        public IActionResult CreateProduct([FromBody] Products product)
         {
             if(default == product)
             {
@@ -65,7 +64,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Controllers
 
         [ODataRoute("({key})")]
         [HttpPatch]
-        public IActionResult EditProduct([FromODataUri] int key, [FromBody] Delta<Product> delta)
+        public IActionResult EditProduct([FromODataUri] int key, [FromBody] Delta<Products> delta)
         {
             var product = _context.Products.Find(key);
             if(default == product)
@@ -94,5 +93,15 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Controllers
 
             return NoContent();
         }
+        
+        //[EnableQuery]
+        //[ODataRoute("({key})/Bookings")]
+        //[HttpGet]
+        //public IActionResult GetProductBookings([FromODataUri] int key)
+        //{
+        //    var bookings = _context.Bookings.ToList();
+        //
+        //    return Ok(bookings);
+        //}
     }
 }

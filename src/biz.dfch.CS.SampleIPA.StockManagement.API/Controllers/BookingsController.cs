@@ -4,13 +4,11 @@ using Microsoft.AspNet.OData;
 using Microsoft.AspNet.OData.Routing;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace biz.dfch.CS.SampleIPA.StockManagement.API.Controllers
 {
-    [ODataRoutePrefix(nameof(Booking))]
+    [ODataRoutePrefix(nameof(Bookings))]
     public class BookingsController : ODataController
     {
         private readonly StockManagementContext _context;
@@ -27,17 +25,17 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Controllers
 
         [ODataRoute]
         [HttpPost]
-        public IActionResult CreateBooking([FromBody] BookingDto bookingDto)
+        public IActionResult CreateBooking([FromBody] BookingsDto bookingsDto)
         {
-            var product = _context.Products.Find(bookingDto.ProductId);
+            var product = _context.Products.Find(bookingsDto.ProductId);
             if(default == product)
             {
                 return NotFound();
             }
 
-            var booking = new Booking
+            var booking = new Bookings
             {
-                Amount = bookingDto.Amount,
+                Amount = bookingsDto.Amount,
                 DataTime = DateTime.Now,
                 Product = product
             };

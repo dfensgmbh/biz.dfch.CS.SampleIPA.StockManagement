@@ -2,7 +2,7 @@
 
 namespace biz.dfch.CS.SampleIPA.StockManagement.API.Models
 {
-    public class Category
+    public class Categories
     {
         public int Id { get; set; }
 

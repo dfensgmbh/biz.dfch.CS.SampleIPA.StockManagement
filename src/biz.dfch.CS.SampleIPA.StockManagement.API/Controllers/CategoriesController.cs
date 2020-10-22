@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace biz.dfch.CS.SampleIPA.StockManagement.API.Controllers
 {
-    [ODataRoutePrefix(nameof(Category))]
+    [ODataRoutePrefix(nameof(Categories))]
     public class CategoriesController : ODataController
     {
         private readonly StockManagementContext _context;

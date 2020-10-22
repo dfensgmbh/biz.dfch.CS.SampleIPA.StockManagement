@@ -2,7 +2,7 @@
 
 namespace biz.dfch.CS.SampleIPA.StockManagement.API.Models
 {
-    public class Product
+    public class Products
     {
         public int Id { get; set; }
 
@@ -18,6 +18,6 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Models
 
         [Column(TypeName = "decimal(10,3)")]
         public decimal WeightInKg { get; set; } 
-        public Category Category { get; set; }
+        public Categories Category { get; set; }
     }
 }

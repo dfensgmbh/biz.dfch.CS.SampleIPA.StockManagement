@@ -8,37 +8,37 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generation date: 22/10/2020 14:20:22
+// Generation date: 22/10/2020 15:39:52
 namespace biz.dfch.CS.SampleIPA.StockManagement.API.Models
 {
     /// <summary>
-    /// There are no comments for ProductSingle in the schema.
+    /// There are no comments for ProductsSingle in the schema.
     /// </summary>
-    public partial class ProductSingle : global::Microsoft.OData.Client.DataServiceQuerySingle<Product>
+    public partial class ProductsSingle : global::Microsoft.OData.Client.DataServiceQuerySingle<Products>
     {
         /// <summary>
-        /// Initialize a new ProductSingle object.
+        /// Initialize a new ProductsSingle object.
         /// </summary>
-        public ProductSingle(global::Microsoft.OData.Client.DataServiceContext context, string path)
+        public ProductsSingle(global::Microsoft.OData.Client.DataServiceContext context, string path)
             : base(context, path) {}
 
         /// <summary>
-        /// Initialize a new ProductSingle object.
+        /// Initialize a new ProductsSingle object.
         /// </summary>
-        public ProductSingle(global::Microsoft.OData.Client.DataServiceContext context, string path, bool isComposable)
+        public ProductsSingle(global::Microsoft.OData.Client.DataServiceContext context, string path, bool isComposable)
             : base(context, path, isComposable) {}
 
         /// <summary>
-        /// Initialize a new ProductSingle object.
+        /// Initialize a new ProductsSingle object.
         /// </summary>
-        public ProductSingle(global::Microsoft.OData.Client.DataServiceQuerySingle<Product> query)
+        public ProductsSingle(global::Microsoft.OData.Client.DataServiceQuerySingle<Products> query)
             : base(query) {}
 
         /// <summary>
         /// There are no comments for Category in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        public virtual global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.CategorySingle Category
+        public virtual global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.CategoriesSingle Category
         {
             get
             {
@@ -48,39 +48,39 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Models
                 }
                 if ((this._Category == null))
                 {
-                    this._Category = new global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.CategorySingle(this.Context, GetPath("Category"));
+                    this._Category = new global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.CategoriesSingle(this.Context, GetPath("Category"));
                 }
                 return this._Category;
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        private global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.CategorySingle _Category;
+        private global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.CategoriesSingle _Category;
     }
     /// <summary>
-    /// There are no comments for Product in the schema.
+    /// There are no comments for Products in the schema.
     /// </summary>
     /// <KeyProperties>
     /// Id
     /// </KeyProperties>
     [global::Microsoft.OData.Client.Key("Id")]
-    public partial class Product : global::Microsoft.OData.Client.BaseEntityType
+    public partial class Products : global::Microsoft.OData.Client.BaseEntityType
     {
         /// <summary>
-        /// Create a new Product object.
+        /// Create a new Products object.
         /// </summary>
         /// <param name="ID">Initial value of Id.</param>
         /// <param name="quantity">Initial value of Quantity.</param>
         /// <param name="pricePerPiece">Initial value of PricePerPiece.</param>
         /// <param name="weightInKg">Initial value of WeightInKg.</param>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        public static Product CreateProduct(int ID, int quantity, decimal pricePerPiece, decimal weightInKg)
+        public static Products CreateProducts(int ID, int quantity, decimal pricePerPiece, decimal weightInKg)
         {
-            Product product = new Product();
-            product.Id = ID;
-            product.Quantity = quantity;
-            product.PricePerPiece = pricePerPiece;
-            product.WeightInKg = weightInKg;
-            return product;
+            Products products = new Products();
+            products.Id = ID;
+            products.Quantity = quantity;
+            products.PricePerPiece = pricePerPiece;
+            products.WeightInKg = weightInKg;
+            return products;
         }
         /// <summary>
         /// There are no comments for Property Id in the schema.
@@ -212,7 +212,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Models
         /// There are no comments for Property Category in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        public virtual global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Category Category
+        public virtual global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Categories Category
         {
             get
             {
@@ -226,38 +226,38 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Models
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        private global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Category _Category;
-        partial void OnCategoryChanging(global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Category value);
+        private global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Categories _Category;
+        partial void OnCategoryChanging(global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Categories value);
         partial void OnCategoryChanged();
     }
     /// <summary>
-    /// There are no comments for BookingSingle in the schema.
+    /// There are no comments for BookingsSingle in the schema.
     /// </summary>
-    public partial class BookingSingle : global::Microsoft.OData.Client.DataServiceQuerySingle<Booking>
+    public partial class BookingsSingle : global::Microsoft.OData.Client.DataServiceQuerySingle<Bookings>
     {
         /// <summary>
-        /// Initialize a new BookingSingle object.
+        /// Initialize a new BookingsSingle object.
         /// </summary>
-        public BookingSingle(global::Microsoft.OData.Client.DataServiceContext context, string path)
+        public BookingsSingle(global::Microsoft.OData.Client.DataServiceContext context, string path)
             : base(context, path) {}
 
         /// <summary>
-        /// Initialize a new BookingSingle object.
+        /// Initialize a new BookingsSingle object.
         /// </summary>
-        public BookingSingle(global::Microsoft.OData.Client.DataServiceContext context, string path, bool isComposable)
+        public BookingsSingle(global::Microsoft.OData.Client.DataServiceContext context, string path, bool isComposable)
             : base(context, path, isComposable) {}
 
         /// <summary>
-        /// Initialize a new BookingSingle object.
+        /// Initialize a new BookingsSingle object.
         /// </summary>
-        public BookingSingle(global::Microsoft.OData.Client.DataServiceQuerySingle<Booking> query)
+        public BookingsSingle(global::Microsoft.OData.Client.DataServiceQuerySingle<Bookings> query)
             : base(query) {}
 
         /// <summary>
         /// There are no comments for Product in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        public virtual global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.ProductSingle Product
+        public virtual global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.ProductsSingle Product
         {
             get
             {
@@ -267,37 +267,37 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Models
                 }
                 if ((this._Product == null))
                 {
-                    this._Product = new global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.ProductSingle(this.Context, GetPath("Product"));
+                    this._Product = new global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.ProductsSingle(this.Context, GetPath("Product"));
                 }
                 return this._Product;
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        private global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.ProductSingle _Product;
+        private global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.ProductsSingle _Product;
     }
     /// <summary>
-    /// There are no comments for Booking in the schema.
+    /// There are no comments for Bookings in the schema.
     /// </summary>
     /// <KeyProperties>
     /// Id
     /// </KeyProperties>
     [global::Microsoft.OData.Client.Key("Id")]
-    public partial class Booking : global::Microsoft.OData.Client.BaseEntityType
+    public partial class Bookings : global::Microsoft.OData.Client.BaseEntityType
     {
         /// <summary>
-        /// Create a new Booking object.
+        /// Create a new Bookings object.
         /// </summary>
         /// <param name="ID">Initial value of Id.</param>
         /// <param name="amount">Initial value of Amount.</param>
         /// <param name="dataTime">Initial value of DataTime.</param>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        public static Booking CreateBooking(int ID, int amount, global::System.DateTimeOffset dataTime)
+        public static Bookings CreateBookings(int ID, int amount, global::System.DateTimeOffset dataTime)
         {
-            Booking booking = new Booking();
-            booking.Id = ID;
-            booking.Amount = amount;
-            booking.DataTime = dataTime;
-            return booking;
+            Bookings bookings = new Bookings();
+            bookings.Id = ID;
+            bookings.Amount = amount;
+            bookings.DataTime = dataTime;
+            return bookings;
         }
         /// <summary>
         /// There are no comments for Property Id in the schema.
@@ -366,7 +366,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Models
         /// There are no comments for Property Product in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        public virtual global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Product Product
+        public virtual global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Products Product
         {
             get
             {
@@ -380,53 +380,53 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Models
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        private global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Product _Product;
-        partial void OnProductChanging(global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Product value);
+        private global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Products _Product;
+        partial void OnProductChanging(global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Products value);
         partial void OnProductChanged();
     }
     /// <summary>
-    /// There are no comments for CategorySingle in the schema.
+    /// There are no comments for CategoriesSingle in the schema.
     /// </summary>
-    public partial class CategorySingle : global::Microsoft.OData.Client.DataServiceQuerySingle<Category>
+    public partial class CategoriesSingle : global::Microsoft.OData.Client.DataServiceQuerySingle<Categories>
     {
         /// <summary>
-        /// Initialize a new CategorySingle object.
+        /// Initialize a new CategoriesSingle object.
         /// </summary>
-        public CategorySingle(global::Microsoft.OData.Client.DataServiceContext context, string path)
+        public CategoriesSingle(global::Microsoft.OData.Client.DataServiceContext context, string path)
             : base(context, path) {}
 
         /// <summary>
-        /// Initialize a new CategorySingle object.
+        /// Initialize a new CategoriesSingle object.
         /// </summary>
-        public CategorySingle(global::Microsoft.OData.Client.DataServiceContext context, string path, bool isComposable)
+        public CategoriesSingle(global::Microsoft.OData.Client.DataServiceContext context, string path, bool isComposable)
             : base(context, path, isComposable) {}
 
         /// <summary>
-        /// Initialize a new CategorySingle object.
+        /// Initialize a new CategoriesSingle object.
         /// </summary>
-        public CategorySingle(global::Microsoft.OData.Client.DataServiceQuerySingle<Category> query)
+        public CategoriesSingle(global::Microsoft.OData.Client.DataServiceQuerySingle<Categories> query)
             : base(query) {}
 
     }
     /// <summary>
-    /// There are no comments for Category in the schema.
+    /// There are no comments for Categories in the schema.
     /// </summary>
     /// <KeyProperties>
     /// Id
     /// </KeyProperties>
     [global::Microsoft.OData.Client.Key("Id")]
-    public partial class Category : global::Microsoft.OData.Client.BaseEntityType
+    public partial class Categories : global::Microsoft.OData.Client.BaseEntityType
     {
         /// <summary>
-        /// Create a new Category object.
+        /// Create a new Categories object.
         /// </summary>
         /// <param name="ID">Initial value of Id.</param>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        public static Category CreateCategory(int ID)
+        public static Categories CreateCategories(int ID)
         {
-            Category category = new Category();
-            category.Id = ID;
-            return category;
+            Categories categories = new Categories();
+            categories.Id = ID;
+            return categories;
         }
         /// <summary>
         /// There are no comments for Property Id in the schema.
@@ -477,73 +477,73 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Models
     public static class ExtensionMethods
     {
         /// <summary>
-        /// Get an entity of type global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Product as global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.ProductSingle specified by key from an entity set
+        /// Get an entity of type global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Products as global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.ProductsSingle specified by key from an entity set
         /// </summary>
         /// <param name="source">source entity set</param>
         /// <param name="keys">dictionary with the names and values of keys</param>
-        public static global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.ProductSingle ByKey(this global::Microsoft.OData.Client.DataServiceQuery<global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Product> source, global::System.Collections.Generic.IDictionary<string, object> keys)
+        public static global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.ProductsSingle ByKey(this global::Microsoft.OData.Client.DataServiceQuery<global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Products> source, global::System.Collections.Generic.IDictionary<string, object> keys)
         {
-            return new global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.ProductSingle(source.Context, source.GetKeyPath(global::Microsoft.OData.Client.Serializer.GetKeyString(source.Context, keys)));
+            return new global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.ProductsSingle(source.Context, source.GetKeyPath(global::Microsoft.OData.Client.Serializer.GetKeyString(source.Context, keys)));
         }
         /// <summary>
-        /// Get an entity of type global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Product as global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.ProductSingle specified by key from an entity set
+        /// Get an entity of type global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Products as global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.ProductsSingle specified by key from an entity set
         /// </summary>
         /// <param name="source">source entity set</param>
         /// <param name="id">The value of id</param>
-        public static global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.ProductSingle ByKey(this global::Microsoft.OData.Client.DataServiceQuery<global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Product> source,
+        public static global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.ProductsSingle ByKey(this global::Microsoft.OData.Client.DataServiceQuery<global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Products> source,
             int id)
         {
             global::System.Collections.Generic.IDictionary<string, object> keys = new global::System.Collections.Generic.Dictionary<string, object>
             {
                 { "Id", id }
             };
-            return new global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.ProductSingle(source.Context, source.GetKeyPath(global::Microsoft.OData.Client.Serializer.GetKeyString(source.Context, keys)));
+            return new global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.ProductsSingle(source.Context, source.GetKeyPath(global::Microsoft.OData.Client.Serializer.GetKeyString(source.Context, keys)));
         }
         /// <summary>
-        /// Get an entity of type global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Booking as global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.BookingSingle specified by key from an entity set
+        /// Get an entity of type global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Bookings as global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.BookingsSingle specified by key from an entity set
         /// </summary>
         /// <param name="source">source entity set</param>
         /// <param name="keys">dictionary with the names and values of keys</param>
-        public static global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.BookingSingle ByKey(this global::Microsoft.OData.Client.DataServiceQuery<global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Booking> source, global::System.Collections.Generic.IDictionary<string, object> keys)
+        public static global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.BookingsSingle ByKey(this global::Microsoft.OData.Client.DataServiceQuery<global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Bookings> source, global::System.Collections.Generic.IDictionary<string, object> keys)
         {
-            return new global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.BookingSingle(source.Context, source.GetKeyPath(global::Microsoft.OData.Client.Serializer.GetKeyString(source.Context, keys)));
+            return new global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.BookingsSingle(source.Context, source.GetKeyPath(global::Microsoft.OData.Client.Serializer.GetKeyString(source.Context, keys)));
         }
         /// <summary>
-        /// Get an entity of type global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Booking as global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.BookingSingle specified by key from an entity set
+        /// Get an entity of type global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Bookings as global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.BookingsSingle specified by key from an entity set
         /// </summary>
         /// <param name="source">source entity set</param>
         /// <param name="id">The value of id</param>
-        public static global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.BookingSingle ByKey(this global::Microsoft.OData.Client.DataServiceQuery<global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Booking> source,
+        public static global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.BookingsSingle ByKey(this global::Microsoft.OData.Client.DataServiceQuery<global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Bookings> source,
             int id)
         {
             global::System.Collections.Generic.IDictionary<string, object> keys = new global::System.Collections.Generic.Dictionary<string, object>
             {
                 { "Id", id }
             };
-            return new global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.BookingSingle(source.Context, source.GetKeyPath(global::Microsoft.OData.Client.Serializer.GetKeyString(source.Context, keys)));
+            return new global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.BookingsSingle(source.Context, source.GetKeyPath(global::Microsoft.OData.Client.Serializer.GetKeyString(source.Context, keys)));
         }
         /// <summary>
-        /// Get an entity of type global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Category as global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.CategorySingle specified by key from an entity set
+        /// Get an entity of type global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Categories as global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.CategoriesSingle specified by key from an entity set
         /// </summary>
         /// <param name="source">source entity set</param>
         /// <param name="keys">dictionary with the names and values of keys</param>
-        public static global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.CategorySingle ByKey(this global::Microsoft.OData.Client.DataServiceQuery<global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Category> source, global::System.Collections.Generic.IDictionary<string, object> keys)
+        public static global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.CategoriesSingle ByKey(this global::Microsoft.OData.Client.DataServiceQuery<global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Categories> source, global::System.Collections.Generic.IDictionary<string, object> keys)
         {
-            return new global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.CategorySingle(source.Context, source.GetKeyPath(global::Microsoft.OData.Client.Serializer.GetKeyString(source.Context, keys)));
+            return new global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.CategoriesSingle(source.Context, source.GetKeyPath(global::Microsoft.OData.Client.Serializer.GetKeyString(source.Context, keys)));
         }
         /// <summary>
-        /// Get an entity of type global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Category as global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.CategorySingle specified by key from an entity set
+        /// Get an entity of type global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Categories as global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.CategoriesSingle specified by key from an entity set
         /// </summary>
         /// <param name="source">source entity set</param>
         /// <param name="id">The value of id</param>
-        public static global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.CategorySingle ByKey(this global::Microsoft.OData.Client.DataServiceQuery<global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Category> source,
+        public static global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.CategoriesSingle ByKey(this global::Microsoft.OData.Client.DataServiceQuery<global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Categories> source,
             int id)
         {
             global::System.Collections.Generic.IDictionary<string, object> keys = new global::System.Collections.Generic.Dictionary<string, object>
             {
                 { "Id", id }
             };
-            return new global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.CategorySingle(source.Context, source.GetKeyPath(global::Microsoft.OData.Client.Serializer.GetKeyString(source.Context, keys)));
+            return new global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.CategoriesSingle(source.Context, source.GetKeyPath(global::Microsoft.OData.Client.Serializer.GetKeyString(source.Context, keys)));
         }
     }
 }
@@ -567,79 +567,79 @@ namespace Default
         }
         partial void OnContextCreated();
         /// <summary>
-        /// There are no comments for Product in the schema.
+        /// There are no comments for Products in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        public virtual global::Microsoft.OData.Client.DataServiceQuery<global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Product> Product
+        public virtual global::Microsoft.OData.Client.DataServiceQuery<global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Products> Products
         {
             get
             {
-                if ((this._Product == null))
+                if ((this._Products == null))
                 {
-                    this._Product = base.CreateQuery<global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Product>("Product");
+                    this._Products = base.CreateQuery<global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Products>("Products");
                 }
-                return this._Product;
+                return this._Products;
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        private global::Microsoft.OData.Client.DataServiceQuery<global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Product> _Product;
+        private global::Microsoft.OData.Client.DataServiceQuery<global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Products> _Products;
         /// <summary>
-        /// There are no comments for Booking in the schema.
+        /// There are no comments for Bookings in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        public virtual global::Microsoft.OData.Client.DataServiceQuery<global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Booking> Booking
+        public virtual global::Microsoft.OData.Client.DataServiceQuery<global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Bookings> Bookings
         {
             get
             {
-                if ((this._Booking == null))
+                if ((this._Bookings == null))
                 {
-                    this._Booking = base.CreateQuery<global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Booking>("Booking");
+                    this._Bookings = base.CreateQuery<global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Bookings>("Bookings");
                 }
-                return this._Booking;
+                return this._Bookings;
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        private global::Microsoft.OData.Client.DataServiceQuery<global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Booking> _Booking;
+        private global::Microsoft.OData.Client.DataServiceQuery<global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Bookings> _Bookings;
         /// <summary>
-        /// There are no comments for Category in the schema.
+        /// There are no comments for Categories in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        public virtual global::Microsoft.OData.Client.DataServiceQuery<global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Category> Category
+        public virtual global::Microsoft.OData.Client.DataServiceQuery<global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Categories> Categories
         {
             get
             {
-                if ((this._Category == null))
+                if ((this._Categories == null))
                 {
-                    this._Category = base.CreateQuery<global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Category>("Category");
+                    this._Categories = base.CreateQuery<global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Categories>("Categories");
                 }
-                return this._Category;
+                return this._Categories;
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        private global::Microsoft.OData.Client.DataServiceQuery<global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Category> _Category;
+        private global::Microsoft.OData.Client.DataServiceQuery<global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Categories> _Categories;
         /// <summary>
-        /// There are no comments for Product in the schema.
+        /// There are no comments for Products in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        public virtual void AddToProduct(global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Product product)
+        public virtual void AddToProducts(global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Products products)
         {
-            base.AddObject("Product", product);
+            base.AddObject("Products", products);
         }
         /// <summary>
-        /// There are no comments for Booking in the schema.
+        /// There are no comments for Bookings in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        public virtual void AddToBooking(global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Booking booking)
+        public virtual void AddToBookings(global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Bookings bookings)
         {
-            base.AddObject("Booking", booking);
+            base.AddObject("Bookings", bookings);
         }
         /// <summary>
-        /// There are no comments for Category in the schema.
+        /// There are no comments for Categories in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        public virtual void AddToCategory(global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Category category)
+        public virtual void AddToCategories(global::biz.dfch.CS.SampleIPA.StockManagement.API.Models.Categories categories)
         {
-            base.AddObject("Category", category);
+            base.AddObject("Categories", categories);
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
         private abstract class GeneratedEdmModel

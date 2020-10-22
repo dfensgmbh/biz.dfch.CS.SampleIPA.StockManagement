@@ -61,9 +61,9 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API
         private static IEdmModel GetEdmModel()
         {
             var builder = new ODataConventionModelBuilder();
-            builder.EntitySet<Product>(nameof(Product));
-            builder.EntitySet<Booking>(nameof(Booking));
-            builder.EntitySet<Category>(nameof(Category));
+            builder.EntitySet<Products>(nameof(Products));
+            builder.EntitySet<Bookings>(nameof(Bookings));
+            builder.EntitySet<Categories>(nameof(Categories));
             return builder.GetEdmModel();
         }
     }
