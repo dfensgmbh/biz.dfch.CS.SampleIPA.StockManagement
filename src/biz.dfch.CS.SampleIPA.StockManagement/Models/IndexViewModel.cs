@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace biz.dfch.CS.SampleIPA.StockManagement.Models
 {
-    public class ProductsViewModel
+    public class IndexViewModel
     {
         public List<Products> Products;
     }

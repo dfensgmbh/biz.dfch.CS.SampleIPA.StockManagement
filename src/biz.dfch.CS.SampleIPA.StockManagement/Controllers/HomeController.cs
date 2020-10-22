@@ -24,7 +24,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
         {
             var products = container.Products;
 
-            var viewModel = new ProductsViewModel
+            var viewModel = new IndexViewModel
             {
                 Products = products.ToList()
             };
