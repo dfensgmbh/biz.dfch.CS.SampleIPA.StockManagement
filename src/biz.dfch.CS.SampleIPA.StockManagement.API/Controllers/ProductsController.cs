@@ -9,11 +9,11 @@ using System.Linq;
 namespace biz.dfch.CS.SampleIPA.StockManagement.API.Controllers
 {
     [ODataRoutePrefix(nameof(Product))]
-    public class ProductController: ODataController
+    public class ProductsController : ODataController
     {
         private readonly StockManagementContext _context;
 
-        public ProductController(StockManagementContext context)
+        public ProductsController(StockManagementContext context)
         {
             _context = context;
 

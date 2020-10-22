@@ -3,19 +3,16 @@ using biz.dfch.CS.SampleIPA.StockManagement.API.Models;
 using Microsoft.AspNet.OData;
 using Microsoft.AspNet.OData.Routing;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace biz.dfch.CS.SampleIPA.StockManagement.API.Controllers
 {
     [ODataRoutePrefix(nameof(Category))]
-    public class CategoryController : ODataController
+    public class CategoriesController : ODataController
     {
         private readonly StockManagementContext _context;
 
-        public CategoryController(StockManagementContext context)
+        public CategoriesController(StockManagementContext context)
         {
             _context = context;
 
