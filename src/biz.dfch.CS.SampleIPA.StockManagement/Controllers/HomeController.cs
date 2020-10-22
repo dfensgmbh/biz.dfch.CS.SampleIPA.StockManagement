@@ -6,21 +6,30 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using biz.dfch.CS.SampleIPA.StockManagement.Models;
+using Default;
+using Microsoft.Extensions.Configuration;
 
 namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private Container container;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController()
         {
-            _logger = logger;
+            container = new Container(new Uri("https://localhost:44386/odata/"));
         }
 
         public IActionResult Index()
         {
-            return View();
+            var products = container.Product;
+
+            var viewModel = new ProductsViewModel
+            {
+                Products = products.ToList()
+            };
+
+            return View(viewModel);
         }
 
         public IActionResult Privacy()
