@@ -69,5 +69,17 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Controllers
 
             return Updated(delta);
         }
+
+        [ODataRoute("({key})")]
+        [HttpDelete]
+        public IActionResult DeleteProduct([FromODataUri] int key)
+        {
+            var product = _context.Products.Find(key);
+
+            _context.Products.Remove(product);
+            _context.SaveChanges();
+
+            return NoContent();
+        }
     }
 }
