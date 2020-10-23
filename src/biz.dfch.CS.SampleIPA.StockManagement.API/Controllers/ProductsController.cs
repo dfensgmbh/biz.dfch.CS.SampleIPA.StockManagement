@@ -3,6 +3,8 @@ using biz.dfch.CS.SampleIPA.StockManagement.API.Models;
 using Microsoft.AspNet.OData;
 using Microsoft.AspNet.OData.Routing;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace biz.dfch.CS.SampleIPA.StockManagement.API.Controllers
@@ -89,7 +91,20 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Controllers
             }
 
             _context.Products.Remove(product);
-            _context.SaveChanges();
+
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch(DbUpdateException ex)
+            {
+                if(ex.InnerException.HResult == -2146232060)
+                {
+                    return BadRequest();
+                }
+
+                return NoContent();
+            }
 
             return NoContent();
         }

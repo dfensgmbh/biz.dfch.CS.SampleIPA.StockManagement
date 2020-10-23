@@ -1,6 +1,7 @@
 ﻿using biz.dfch.CS.SampleIPA.StockManagement.Models;
 using Default;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Diagnostics;
 using System.Linq;
@@ -37,6 +38,40 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
             };
 
             return View(viewModel);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var product = container.Products.Where(p => p.Id == id).Single();
+            if(default == product)
+            {
+                return NotFound();
+            }
+
+            return View(product);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var product = container.Products.Where(p => p.Id == id).Single();
+
+            container.DeleteObject(product);
+
+            try
+            {
+                container.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                if(ex.HResult == -2146233079)
+                {
+                    // Product has Booking
+                }
+            }
+
+            return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Privacy()
