@@ -41,17 +41,19 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
             return View(viewModel);
         }
 
+        public IActionResult Edit(int id)
+        {
+            return GetProductsWithCategory(id);
+        }
+
+        public IActionResult Details(int id)
+        {
+            return GetProductsWithCategory(id);
+        }
+
         public IActionResult Delete(int id)
         {
-            var products = container.Products.AddQueryOption("$expand", "Category").ToList();
-            var product = products.Where(p => p.Id == id).Single();
-
-            if(default == product)
-            {
-                return NotFound();
-            }
-
-            return View(product);
+            return GetProductsWithCategory(id);
         }
 
         [HttpPost, ActionName("Delete")]
@@ -86,6 +88,23 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult GetProductsWithCategory(int id)
+        {
+            var products = container.Products.AddQueryOption("$expand", "Category").ToList();
+            if(default == products)
+            {
+                return NotFound();
+            }
+
+            var product = products.Where(p => p.Id == id)?.Single();
+            if (default == product)
+            {
+                return NotFound();
+            }
+
+            return View(product);
         }
     }
 }
