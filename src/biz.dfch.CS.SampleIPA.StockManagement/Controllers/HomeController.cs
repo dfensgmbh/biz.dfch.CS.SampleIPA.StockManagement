@@ -1,4 +1,5 @@
-﻿using biz.dfch.CS.SampleIPA.StockManagement.Models;
+﻿using biz.dfch.CS.SampleIPA.StockManagement.API.Models;
+using biz.dfch.CS.SampleIPA.StockManagement.Models;
 using Default;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -42,7 +43,9 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
 
         public IActionResult Delete(int id)
         {
-            var product = container.Products.Where(p => p.Id == id).Single();
+            var products = container.Products.AddQueryOption("$expand", "Category").ToList();
+            var product = products.Where(p => p.Id == id).Single();
+
             if(default == product)
             {
                 return NotFound();
