@@ -41,9 +41,49 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
             return View(viewModel);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create([Bind("Name,MaterialNumber,Quantity,PricePerPiece,WeightInKg")] Products product)
+        {
+            container.AddToProducts(product);
+            container.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+
         public IActionResult Edit(int id)
         {
             return GetProductsWithCategory(id);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, [Bind("Id,Name,PricePerPiece,WeightInKg")] ProductsDto productDto)
+        {
+            if (id != productDto.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                var product = container.Products.Where(p => p.Id == id).Single();
+
+                product.Name = productDto.Name;
+                product.PricePerPiece = productDto.PricePerPiece;
+                product.WeightInKg = productDto.WeightInKg;
+
+                try
+                {
+                    container.UpdateObject(product);
+                    container.SaveChanges();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+   
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(productDto);
         }
 
         public IActionResult Details(int id)

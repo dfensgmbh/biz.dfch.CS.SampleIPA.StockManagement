@@ -10,22 +10,24 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="Name" class="control-label">
-                </label><input asp-for="Name" class="form-control" />
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <p>@Html.DisplayNameFor(model => model.MaterialNumber): @Html.DisplayFor(model => model.MaterialNumber)</p>                
+                <label asp-for="MaterialNumber" class="control-label"></label>                
             </div>
             <div class="form-group">
-                <p>@Html.DisplayNameFor(model => model.Quantity): @Html.DisplayFor(model => model.Quantity)</p>                
+                <p asp-for="Quantity">@Html.DisplayNameFor(model => model.Quantity): @Html.DisplayFor(model => model.Quantity)</p>                
             </div>
             <div class="form-group">
-                <label asp-for="PricePerPiece" class="control-label"></label><input asp-for="PricePerPiece" class="form-control" />
+                <label asp-for="PricePerPiece" class="control-label"></label>
+                <input asp-for="PricePerPiece" class="form-control" />
                 <span asp-validation-for="PricePerPiece" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="WeightInKg" class="control-label"></label><input asp-for="WeightInKg" class="form-control" />
+                <label asp-for="WeightInKg" class="control-label"></label>
+                <input asp-for="WeightInKg" class="form-control" />
                 <span asp-validation-for="WeightInKg" class="text-danger"></span>
             </div>
             <div class="form-group">
