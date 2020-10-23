@@ -20,7 +20,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
 
         public IActionResult Index()
         {
-            var products = container.Products;
+            var products = container.Products.AddQueryOption("$expand", "Category");
 
             var viewModel = new IndexViewModel
             {
