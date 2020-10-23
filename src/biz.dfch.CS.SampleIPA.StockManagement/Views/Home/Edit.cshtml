@@ -10,28 +10,22 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
+                <label asp-for="Name" class="control-label">
+                </label><input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MaterialNumber" class="control-label"></label>
-                <input asp-for="MaterialNumber" class="form-control" />
-                <span asp-validation-for="MaterialNumber" class="text-danger"></span>
+                <p>@Html.DisplayNameFor(model => model.MaterialNumber): @Html.DisplayFor(model => model.MaterialNumber)</p>                
             </div>
             <div class="form-group">
-                <label asp-for="Quantity" class="control-label"></label>
-                <input asp-for="Quantity" class="form-control" />
-                <span asp-validation-for="Quantity" class="text-danger"></span>
+                <p>@Html.DisplayNameFor(model => model.Quantity): @Html.DisplayFor(model => model.Quantity)</p>                
             </div>
             <div class="form-group">
-                <label asp-for="PricePerPiece" class="control-label"></label>
-                <input asp-for="PricePerPiece" class="form-control" />
+                <label asp-for="PricePerPiece" class="control-label"></label><input asp-for="PricePerPiece" class="form-control" />
                 <span asp-validation-for="PricePerPiece" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="WeightInKg" class="control-label"></label>
-                <input asp-for="WeightInKg" class="form-control" />
+                <label asp-for="WeightInKg" class="control-label"></label><input asp-for="WeightInKg" class="form-control" />
                 <span asp-validation-for="WeightInKg" class="text-danger"></span>
             </div>
             <div class="form-group">
