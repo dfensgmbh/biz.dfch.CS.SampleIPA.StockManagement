@@ -107,7 +107,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
             return GetProductWithCategory(id);
         }
 
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName(nameof(Delete))]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
@@ -138,6 +138,37 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
             };
 
             return View(bookViewModel);
+        }
+
+        [HttpPost, ActionName(nameof(Book))]
+        [ValidateAntiForgeryToken]
+        public IActionResult Book(int id, BookViewModel bookViewModel)
+        {
+            if(id != bookViewModel.Id)
+            {
+                // Wrong
+            }
+
+            if(default == bookViewModel.BookingAction) { /* WRONG */ }
+
+            if(bookViewModel.BookingAction == "Entfernen")
+            {
+                bookViewModel.Amount *= -1;
+            }
+
+            var product = container.Products.Where(p => p.Id == id).Single();
+
+            var booking = new Bookings
+            {
+                Amount = bookViewModel.Amount,
+                Product = product
+            };
+
+            container.AddToBookings(booking);
+            container.SaveChanges();
+
+
+            return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Privacy()

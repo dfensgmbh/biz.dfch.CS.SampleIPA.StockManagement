@@ -8,7 +8,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Models
     public class BookViewModel
     {
         public int Id { get; set; }
-        public int Quantity { get; set; }
+        public int Amount { get; set; }
         public string BookingAction { get; set; }
     }
 }
