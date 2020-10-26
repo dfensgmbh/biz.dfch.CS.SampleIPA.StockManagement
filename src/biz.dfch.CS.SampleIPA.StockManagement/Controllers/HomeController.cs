@@ -33,9 +33,15 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
         {
             var categories = container.Categories;
 
+            var categoryNames = new List<string>();
+            foreach(var category in categories)
+            {
+                categoryNames.Add(category.Name);
+            }
+
             var viewModel = new CreateViewModel
             {
-                Categories = categories.ToList()
+                Categories = categoryNames
             };
 
             return View(viewModel);
@@ -52,7 +58,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
 
         public IActionResult Edit(int id)
         {
-            return GetProductsWithCategory(id);
+            return GetProductWithCategory(id);
         }
 
         [HttpPost]
@@ -88,12 +94,12 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
 
         public IActionResult Details(int id)
         {
-            return GetProductsWithCategory(id);
+            return GetProductWithCategory(id);
         }
 
         public IActionResult Delete(int id)
         {
-            return GetProductsWithCategory(id);
+            return GetProductWithCategory(id);
         }
 
         [HttpPost, ActionName("Delete")]
@@ -130,7 +136,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public IActionResult GetProductsWithCategory(int id)
+        public IActionResult GetProductWithCategory(int id)
         {
             var products = container.Products.AddQueryOption("$expand", "Category").ToList();
             if(default == products)
