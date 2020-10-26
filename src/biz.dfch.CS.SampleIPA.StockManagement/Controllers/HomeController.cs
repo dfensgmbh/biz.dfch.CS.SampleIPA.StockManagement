@@ -4,6 +4,7 @@ using Default;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
@@ -12,15 +13,17 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
     public class HomeController : Controller
     {
         private Container container;
+        private IEnumerable<Categories> categories;
 
         public HomeController()
         {
             container = new Container(new Uri("https://localhost:44386/odata/"));
+            categories = container.Categories.ToList();
         }
 
         public IActionResult Index()
         {
-            var products = container.Products.AddQueryOption("$expand", "Category");
+            var products = container.Products.AddQueryOption("$expand", "Category").ToList();
 
             var viewModel = new IndexViewModel
             {
@@ -31,8 +34,6 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
         }
         public IActionResult Create()
         {
-            var categories = container.Categories;
-
             var categoryNames = new List<string>();
             foreach(var category in categories)
             {
@@ -49,10 +50,14 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Name,MaterialNumber,Quantity,PricePerPiece,WeightInKg")] Products product)
+        public IActionResult Create([Bind("Name,MaterialNumber,Quantity,PricePerPiece,WeightInKg")] Products product, [Bind("SelectedItemId")] string selectedItemId)
         {
+            var selectedCategory = categories.Where(c => c.Name == selectedItemId).Single();
+            product.Category = selectedCategory; 
+            
             container.AddToProducts(product);
             container.SaveChanges();
+
             return RedirectToAction(nameof(Index));
         }
 
