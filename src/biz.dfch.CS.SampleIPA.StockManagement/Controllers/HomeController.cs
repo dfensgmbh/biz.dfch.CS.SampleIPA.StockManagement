@@ -130,6 +130,16 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public IActionResult Book(int id)
+        {
+            var bookViewModel = new BookViewModel 
+            {
+                Id = id
+            };
+
+            return View(bookViewModel);
+        }
+
         public IActionResult Privacy()
         {
             return View();

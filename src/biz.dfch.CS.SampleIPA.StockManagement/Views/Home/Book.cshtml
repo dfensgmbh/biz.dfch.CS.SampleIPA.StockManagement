@@ -1,1 +1,28 @@
-﻿
+﻿@model biz.dfch.CS.SampleIPA.StockManagement.Models.BookViewModel
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Book">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Quantity" class="control-label"></label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookingAction" class="control-label"></label>
+                @Html.RadioButtonFor(m => m.BookingAction, "Hinzufügen")
+                @Html.RadioButtonFor(m => m.BookingAction, "Entfernen")
+                <span asp-validation-for="BookingAction" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div> 
