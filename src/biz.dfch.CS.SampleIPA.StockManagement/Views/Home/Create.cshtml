@@ -32,6 +32,12 @@
                 <input asp-for="Product.WeightInKg" class="form-control" />
                 <span asp-validation-for="Product.WeightInKg" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="Product.Category" class="control-label"></label>
+                @Html.DropDownListFor(m => m.SelectedItemId, new SelectList(Model.Categories), "Kategorie Wählen ...")
+                <span asp-validation-for="Product.Category" class="text-danger"></span>
+            </div>
+           
 
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
