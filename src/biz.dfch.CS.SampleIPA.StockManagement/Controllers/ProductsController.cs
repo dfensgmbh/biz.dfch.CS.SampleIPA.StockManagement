@@ -132,9 +132,13 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
 
         public IActionResult Book(int id)
         {
+            var product = container.Products.Where(p => p.Id == id).Single();
+
             var bookViewModel = new BookViewModel 
             {
-                Id = id
+                Id = id,
+                Name = product.Name,
+                CurrentQuantity = product.Quantity
             };
 
             return View(bookViewModel);
@@ -182,17 +186,6 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
             container.SaveChanges();
 
             return RedirectToAction(nameof(Index));
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
         public IActionResult GetProductWithCategory(int id)

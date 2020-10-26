@@ -1,8 +1,12 @@
 ﻿@model biz.dfch.CS.SampleIPA.StockManagement.API.Models.Products
 
-<h1>Edit</h1>
+@{
+    ViewData["Title"] = "Produkt Liste";
+}
 
-<h4>Movie</h4>
+<h1>Bearbeiten</h1>
+
+<h4>Produkt @Html.DisplayFor(m => m.Name)</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -15,10 +19,10 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MaterialNumber" class="control-label"></label>                
+                <p asp-for="Quantity">@Html.DisplayNameFor(model => model.MaterialNumber): @Html.DisplayFor(model => model.MaterialNumber)</p>
             </div>
             <div class="form-group">
-                <p asp-for="Quantity">@Html.DisplayNameFor(model => model.Quantity): @Html.DisplayFor(model => model.Quantity)</p>                
+                <p asp-for="Quantity">@Html.DisplayNameFor(model => model.Quantity): @Html.DisplayFor(model => model.Quantity)</p>
             </div>
             <div class="form-group">
                 <label asp-for="PricePerPiece" class="control-label"></label>
@@ -38,7 +42,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Zurück zur Liste</a>
 </div>
 
 @section Scripts {

@@ -2,7 +2,7 @@
 
 <h1>Löschen</h1>
 <div>
-    <h4>Proodukt @Html.DisplayFor(model => model.Name)</h4>
+    <h4>Produkt @Html.DisplayFor(model => model.Name)</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -46,6 +46,6 @@
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <a asp-action="Index">Zurück zur Liste</a>
     </form>
 </div>

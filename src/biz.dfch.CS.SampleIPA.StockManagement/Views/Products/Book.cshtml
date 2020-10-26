@@ -1,5 +1,9 @@
 ﻿@model biz.dfch.CS.SampleIPA.StockManagement.Models.BookViewModel
 
+<h1>Buchen</h1>
+
+<h4>Produkt @Html.DisplayFor(m => m.Name)</h4>
+<hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Book">
@@ -24,5 +28,5 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Zurück zur Liste</a>
 </div> 
