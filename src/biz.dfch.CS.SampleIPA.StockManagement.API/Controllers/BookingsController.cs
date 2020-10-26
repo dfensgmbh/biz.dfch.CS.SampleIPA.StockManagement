@@ -25,20 +25,12 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Controllers
 
         [ODataRoute]
         [HttpPost]
-        public IActionResult CreateBooking([FromBody] BookingsDto bookingsDto)
+        public IActionResult CreateBooking([FromBody] Bookings booking)
         {
-            var product = _context.Products.Find(bookingsDto.ProductId);
-            if(default == product)
+            if(default == booking)
             {
-                return NotFound();
+                return BadRequest();
             }
-
-            var booking = new Bookings
-            {
-                Amount = bookingsDto.Amount,
-                DataTime = DateTime.Now,
-                Product = product
-            };
 
             _context.Bookings.Add(booking);
             _context.SaveChanges();

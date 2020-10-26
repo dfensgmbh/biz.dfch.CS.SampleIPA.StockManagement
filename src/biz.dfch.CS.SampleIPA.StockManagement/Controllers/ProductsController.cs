@@ -150,23 +150,36 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
             }
 
             if(default == bookViewModel.BookingAction) { /* WRONG */ }
-
+           
+            var product = container.Products.Where(p => p.Id == id).Single();
+           
             if(bookViewModel.BookingAction == "Entfernen")
             {
-                bookViewModel.Amount *= -1;
+                if(product.Quantity < bookViewModel.Amount)
+                {
+                    // Amount zu gross 
+                }
+                else
+                {
+                    product.Quantity -= bookViewModel.Amount;
+                    bookViewModel.Amount *= -1;
+                }
             }
-
-            var product = container.Products.Where(p => p.Id == id).Single();
+            else
+            {
+                product.Quantity += bookViewModel.Amount;
+            }
 
             var booking = new Bookings
             {
                 Amount = bookViewModel.Amount,
+                DataTime = DateTime.Now,
                 Product = product
             };
 
             container.AddToBookings(booking);
+            container.UpdateObject(product);
             container.SaveChanges();
-
 
             return RedirectToAction(nameof(Index));
         }

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generation date: 22/10/2020 15:39:52
+// Generation date: 26/10/2020 14:22:40
 namespace biz.dfch.CS.SampleIPA.StockManagement.API.Models
 {
     /// <summary>
