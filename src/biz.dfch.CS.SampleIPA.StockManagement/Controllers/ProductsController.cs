@@ -10,12 +10,12 @@ using System.Linq;
 
 namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
 {
-    public class HomeController : Controller
+    public class ProductsController : Controller
     {
         private Container container;
         private IEnumerable<Categories> categories;
 
-        public HomeController()
+        public ProductsController()
         {
             container = new Container(new Uri("https://localhost:44386/odata/"));
             categories = container.Categories.ToList();
