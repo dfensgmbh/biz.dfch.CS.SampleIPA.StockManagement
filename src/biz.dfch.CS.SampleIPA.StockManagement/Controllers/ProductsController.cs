@@ -54,9 +54,23 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
             var selectedCategory = categories.Where(c => c.Name == selectedCategoryName).Single();
             product.Category = selectedCategory;
             product.CategoryId = selectedCategory.Id;
-            
+
             container.AddToProducts(product);
             container.SaveChanges();
+            
+            // Code below needs to be after the first 'container.SaveChanges()', else the Product has no Id (product.Id) --> API can't find Product.
+            if (product.Quantity > 0)
+            {
+                var booking = new Bookings
+                {
+                    Amount = product.Quantity,
+                    DataTime = DateTime.Now,
+                    Product = product,
+                    ProductId = product.Id
+                };
+                container.AddToBookings(booking);
+                container.SaveChanges();
+            }
 
             return RedirectToAction(nameof(Index));
         }
