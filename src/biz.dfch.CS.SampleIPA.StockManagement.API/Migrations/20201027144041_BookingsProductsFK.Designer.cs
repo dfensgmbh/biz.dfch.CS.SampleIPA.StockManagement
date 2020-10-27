@@ -10,8 +10,8 @@ using biz.dfch.CS.SampleIPA.StockManagement.API.Data;
 namespace biz.dfch.CS.SampleIPA.StockManagement.API.Migrations
 {
     [DbContext(typeof(StockManagementContext))]
-    [Migration("20201021125940_DefineDecimalDatatype")]
-    partial class DefineDecimalDatatype
+    [Migration("20201027144041_BookingsProductsFK")]
+    partial class BookingsProductsFK
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("biz.dfch.CS.SampleIPA.StockManagement.API.Models.Booking", b =>
+            modelBuilder.Entity("biz.dfch.CS.SampleIPA.StockManagement.API.Models.Bookings", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -34,7 +34,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Migrations
                     b.Property<DateTime>("DataTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ProductId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -44,7 +44,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Migrations
                     b.ToTable("Bookings");
                 });
 
-            modelBuilder.Entity("biz.dfch.CS.SampleIPA.StockManagement.API.Models.Category", b =>
+            modelBuilder.Entity("biz.dfch.CS.SampleIPA.StockManagement.API.Models.Categories", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -52,28 +52,60 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Elektronik"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Haushalt"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Möbel"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Kleidung"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Sport und Freizeit"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Diverses"
+                        });
                 });
 
-            modelBuilder.Entity("biz.dfch.CS.SampleIPA.StockManagement.API.Models.Product", b =>
+            modelBuilder.Entity("biz.dfch.CS.SampleIPA.StockManagement.API.Models.Products", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CategoryId")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("MaterialNumber")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<decimal>("PricePerPiece")
                         .HasColumnType("decimal(10,2)");
@@ -91,18 +123,22 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("biz.dfch.CS.SampleIPA.StockManagement.API.Models.Booking", b =>
+            modelBuilder.Entity("biz.dfch.CS.SampleIPA.StockManagement.API.Models.Bookings", b =>
                 {
-                    b.HasOne("biz.dfch.CS.SampleIPA.StockManagement.API.Models.Product", "Product")
+                    b.HasOne("biz.dfch.CS.SampleIPA.StockManagement.API.Models.Products", "Product")
                         .WithMany()
-                        .HasForeignKey("ProductId");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
-            modelBuilder.Entity("biz.dfch.CS.SampleIPA.StockManagement.API.Models.Product", b =>
+            modelBuilder.Entity("biz.dfch.CS.SampleIPA.StockManagement.API.Models.Products", b =>
                 {
-                    b.HasOne("biz.dfch.CS.SampleIPA.StockManagement.API.Models.Category", "Category")
+                    b.HasOne("biz.dfch.CS.SampleIPA.StockManagement.API.Models.Categories", "Category")
                         .WithMany()
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

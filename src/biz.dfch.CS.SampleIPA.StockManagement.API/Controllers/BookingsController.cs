@@ -42,6 +42,9 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Controllers
                 return BadRequest();
             }
 
+            var product = _context.Products.Find(booking.ProductId);
+            booking.Product = product;
+
             _context.Bookings.Add(booking);
             _context.SaveChanges();
 

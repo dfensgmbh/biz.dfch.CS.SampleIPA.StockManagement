@@ -3,10 +3,8 @@ using biz.dfch.CS.SampleIPA.StockManagement.Models;
 using Default;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 
 namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
@@ -51,10 +49,11 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Name,MaterialNumber,Quantity,PricePerPiece,WeightInKg")] Products product, [Bind("SelectedCategoryName")] string selectedCategoryName)
+        public IActionResult Create(Products product, [Bind("SelectedCategoryName")] string selectedCategoryName)
         {
             var selectedCategory = categories.Where(c => c.Name == selectedCategoryName).Single();
             product.Category = selectedCategory;
+            product.CategoryId = selectedCategory.Id;
             
             container.AddToProducts(product);
             container.SaveChanges();
@@ -103,6 +102,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
                 product.PricePerPiece = editViewModel.Product.PricePerPiece;
                 product.WeightInKg = editViewModel.Product.WeightInKg;
                 product.Category = category;
+                product.CategoryId = category.Id;
 
                 try
                 {
@@ -111,7 +111,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-   
+                    return Conflict();
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -217,7 +217,8 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
             {
                 Amount = bookViewModel.Amount,
                 DataTime = DateTime.Now,
-                Product = product
+                Product = product,
+                ProductId = product.Id
             };
 
             container.AddToBookings(booking);

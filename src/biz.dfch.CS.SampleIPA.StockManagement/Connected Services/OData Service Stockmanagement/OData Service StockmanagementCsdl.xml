@@ -11,7 +11,10 @@
         <Property Name="Quantity" Type="Edm.Int32" Nullable="false" />
         <Property Name="PricePerPiece" Type="Edm.Decimal" Nullable="false" />
         <Property Name="WeightInKg" Type="Edm.Decimal" Nullable="false" />
-        <NavigationProperty Name="Category" Type="biz.dfch.CS.SampleIPA.StockManagement.API.Models.Categories" />
+        <Property Name="CategoryId" Type="Edm.Int32" />
+        <NavigationProperty Name="Category" Type="biz.dfch.CS.SampleIPA.StockManagement.API.Models.Categories">
+          <ReferentialConstraint Property="CategoryId" ReferencedProperty="Id" />
+        </NavigationProperty>
       </EntityType>
       <EntityType Name="Bookings">
         <Key>
@@ -20,7 +23,10 @@
         <Property Name="Id" Type="Edm.Int32" Nullable="false" />
         <Property Name="Amount" Type="Edm.Int32" Nullable="false" />
         <Property Name="DataTime" Type="Edm.DateTimeOffset" Nullable="false" />
-        <NavigationProperty Name="Product" Type="biz.dfch.CS.SampleIPA.StockManagement.API.Models.Products" />
+        <Property Name="ProductId" Type="Edm.Int32" />
+        <NavigationProperty Name="Product" Type="biz.dfch.CS.SampleIPA.StockManagement.API.Models.Products">
+          <ReferentialConstraint Property="ProductId" ReferencedProperty="Id" />
+        </NavigationProperty>
       </EntityType>
       <EntityType Name="Categories">
         <Key>

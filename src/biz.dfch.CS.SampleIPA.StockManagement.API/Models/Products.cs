@@ -17,7 +17,9 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Models
         public decimal PricePerPiece { get; set; }
 
         [Column(TypeName = "decimal(10,3)")]
-        public decimal WeightInKg { get; set; } 
+        public decimal WeightInKg { get; set; }
+        public int CategoryId { get; set; }
+        [ForeignKey(nameof(CategoryId))]
         public Categories Category { get; set; }
     }
 }

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generation date: 26/10/2020 14:22:40
+// Generation date: 27/10/2020 15:41:31
 namespace biz.dfch.CS.SampleIPA.StockManagement.API.Models
 {
     /// <summary>
@@ -209,6 +209,27 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Models
         partial void OnWeightInKgChanging(decimal value);
         partial void OnWeightInKgChanged();
         /// <summary>
+        /// There are no comments for Property CategoryId in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        public virtual global::System.Nullable<int> CategoryId
+        {
+            get
+            {
+                return this._CategoryId;
+            }
+            set
+            {
+                this.OnCategoryIdChanging(value);
+                this._CategoryId = value;
+                this.OnCategoryIdChanged();
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private global::System.Nullable<int> _CategoryId;
+        partial void OnCategoryIdChanging(global::System.Nullable<int> value);
+        partial void OnCategoryIdChanged();
+        /// <summary>
         /// There are no comments for Property Category in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
@@ -362,6 +383,27 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Models
         private global::System.DateTimeOffset _DataTime;
         partial void OnDataTimeChanging(global::System.DateTimeOffset value);
         partial void OnDataTimeChanged();
+        /// <summary>
+        /// There are no comments for Property ProductId in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        public virtual global::System.Nullable<int> ProductId
+        {
+            get
+            {
+                return this._ProductId;
+            }
+            set
+            {
+                this.OnProductIdChanging(value);
+                this._ProductId = value;
+                this.OnProductIdChanged();
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private global::System.Nullable<int> _ProductId;
+        partial void OnProductIdChanging(global::System.Nullable<int> value);
+        partial void OnProductIdChanged();
         /// <summary>
         /// There are no comments for Property Product in the schema.
         /// </summary>

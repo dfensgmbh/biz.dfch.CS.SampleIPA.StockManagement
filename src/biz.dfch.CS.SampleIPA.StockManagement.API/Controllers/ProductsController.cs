@@ -3,7 +3,6 @@ using biz.dfch.CS.SampleIPA.StockManagement.API.Models;
 using Microsoft.AspNet.OData;
 using Microsoft.AspNet.OData.Routing;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
@@ -58,6 +57,9 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Controllers
                 return BadRequest();
             }
 
+            var category = _context.Categories.Find(product.CategoryId);
+            product.Category = category;
+
             _context.Products.Add(product);
             _context.SaveChanges();
 
@@ -73,6 +75,9 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Controllers
             {
                 return NotFound();
             }
+
+            var category = _context.Categories.Find(product.CategoryId);
+            product.Category = category;
 
             delta.Patch(product);
             _context.SaveChanges();
@@ -108,15 +113,5 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Controllers
 
             return NoContent();
         }
-        
-        //[EnableQuery]
-        //[ODataRoute("({key})/Bookings")]
-        //[HttpGet]
-        //public IActionResult GetProductBookings([FromODataUri] int key)
-        //{
-        //    var bookings = _context.Bookings.ToList();
-        //
-        //    return Ok(bookings);
-        //}
     }
 }

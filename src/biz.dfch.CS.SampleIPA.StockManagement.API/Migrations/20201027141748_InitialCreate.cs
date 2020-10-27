@@ -13,7 +13,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(50)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -26,12 +26,12 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true),
-                    MaterialNumber = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(50)", nullable: true),
+                    MaterialNumber = table.Column<string>(type: "nvarchar(50)", nullable: true),
                     Quantity = table.Column<int>(nullable: false),
-                    PricePerPiece = table.Column<decimal>(nullable: false),
-                    WeightInKg = table.Column<decimal>(nullable: false),
-                    CategoryId = table.Column<int>(nullable: true)
+                    PricePerPiece = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    WeightInKg = table.Column<decimal>(type: "decimal(10,3)", nullable: false),
+                    CategoryId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -41,7 +41,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Migrations
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -63,6 +63,19 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Migrations
                         principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Elektronik" },
+                    { 2, "Haushalt" },
+                    { 3, "Möbel" },
+                    { 4, "Kleidung" },
+                    { 5, "Sport und Freizeit" },
+                    { 6, "Diverses" }
                 });
 
             migrationBuilder.CreateIndex(
