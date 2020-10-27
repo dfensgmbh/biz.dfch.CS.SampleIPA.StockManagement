@@ -99,12 +99,30 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
 
         public IActionResult Details(int id)
         {
-            return GetProductWithCategory(id);
+            var productWithCategory = GetProductWithCategory(id);
+
+            var bookingsWithProduct = container.Bookings.AddQueryOption("Expand", "Product");
+            var allProductBookings = bookingsWithProduct.Where(b => b.Product.Id == id).ToList();
+
+            var detailsViewModel = new DetailsViewModel
+            {
+                Product = productWithCategory,
+                Bookings = allProductBookings
+            };
+
+            return View(detailsViewModel);
         }
 
         public IActionResult Delete(int id)
         {
-            return GetProductWithCategory(id);
+            var productWithCategory = GetProductWithCategory(id);
+
+            if(default == productWithCategory)
+            {
+                return NotFound();
+            }
+
+            return View(productWithCategory);
         }
 
         [HttpPost, ActionName(nameof(Delete))]
@@ -188,21 +206,21 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult GetProductWithCategory(int id)
+        public Products GetProductWithCategory(int id)
         {
             var products = container.Products.AddQueryOption("$expand", "Category").ToList();
             if(default == products)
             {
-                return NotFound();
+                return default;
             }
 
             var product = products.Where(p => p.Id == id)?.Single();
             if (default == product)
             {
-                return NotFound();
+                return default;
             }
 
-            return View(product);
+            return product;
         }
     }
 }

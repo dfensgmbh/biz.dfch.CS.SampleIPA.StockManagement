@@ -24,6 +24,16 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Controllers
         }
 
         [ODataRoute]
+        [EnableQuery]
+        [HttpGet]
+        public IActionResult GetBookings()
+        {
+            var bookings = _context.Bookings;
+
+            return Ok(bookings);
+        }
+
+        [ODataRoute]
         [HttpPost]
         public IActionResult CreateBooking([FromBody] Bookings booking)
         {
