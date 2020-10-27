@@ -3,6 +3,7 @@ using biz.dfch.CS.SampleIPA.StockManagement.Models;
 using Default;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -50,10 +51,10 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Name,MaterialNumber,Quantity,PricePerPiece,WeightInKg")] Products product, [Bind("SelectedItemId")] string selectedItemId)
+        public IActionResult Create([Bind("Name,MaterialNumber,Quantity,PricePerPiece,WeightInKg")] Products product, [Bind("SelectedCategoryName")] string selectedCategoryName)
         {
-            var selectedCategory = categories.Where(c => c.Name == selectedItemId).Single();
-            product.Category = selectedCategory; 
+            var selectedCategory = categories.Where(c => c.Name == selectedCategoryName).Single();
+            product.Category = selectedCategory;
             
             container.AddToProducts(product);
             container.SaveChanges();
@@ -63,14 +64,32 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
 
         public IActionResult Edit(int id)
         {
-            return GetProductWithCategory(id);
+            var categoryNames = new List<string>();
+            foreach (var category in categories)
+            {
+                categoryNames.Add(category.Name);
+            }
+
+            var productWithCategory = GetProductWithCategory(id);
+            if (default == productWithCategory)
+            {
+                return NotFound();
+            }
+
+            var editViewModel = new EditViewModel
+            {
+                Product = productWithCategory,
+                Categories = categoryNames
+            };
+
+            return View(editViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("Id,Name,PricePerPiece,WeightInKg")] ProductsDto productDto)
+        public IActionResult Edit(int id, EditViewModel editViewModel)
         {
-            if (id != productDto.Id)
+            if (id != editViewModel.Product.Id)
             {
                 return NotFound();
             }
@@ -78,10 +97,12 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
             if (ModelState.IsValid)
             {
                 var product = container.Products.Where(p => p.Id == id).Single();
+                var category = categories.Where(c => c.Name == editViewModel.SelectedCategoryName).Single();
 
-                product.Name = productDto.Name;
-                product.PricePerPiece = productDto.PricePerPiece;
-                product.WeightInKg = productDto.WeightInKg;
+                product.Name = editViewModel.Product.Name;
+                product.PricePerPiece = editViewModel.Product.PricePerPiece;
+                product.WeightInKg = editViewModel.Product.WeightInKg;
+                product.Category = category;
 
                 try
                 {
@@ -94,7 +115,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(productDto);
+            return View(editViewModel);
         }
 
         public IActionResult Details(int id)

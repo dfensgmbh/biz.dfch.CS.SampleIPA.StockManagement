@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace biz.dfch.CS.SampleIPA.StockManagement.Models
+﻿namespace biz.dfch.CS.SampleIPA.StockManagement.Models
 {
     public class BookViewModel
     {

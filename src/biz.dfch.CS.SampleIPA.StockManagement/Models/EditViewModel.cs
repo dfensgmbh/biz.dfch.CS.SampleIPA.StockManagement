@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace biz.dfch.CS.SampleIPA.StockManagement.Models
 {
-    public class CreateViewModel
+    public class EditViewModel
     {
-        public Products Product;
+        public Products Product { get; set; }
         public string SelectedCategoryName { get; set; }
         public IEnumerable<string> Categories;
     }

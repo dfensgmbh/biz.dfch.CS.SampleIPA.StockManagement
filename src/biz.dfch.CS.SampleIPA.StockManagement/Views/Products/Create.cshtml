@@ -34,11 +34,9 @@
             </div>
             <div class="form-group">
                 <label asp-for="Product.Category" class="control-label"></label>
-                @Html.DropDownListFor(m => m.SelectedItemId, new SelectList(Model.Categories), "Kategorie Wählen ...")
+                @Html.DropDownListFor(m => m.SelectedCategoryName, new SelectList(Model.Categories), "Kategorie Wählen ...")
                 <span asp-validation-for="Product.Category" class="text-danger"></span>
             </div>
-           
-
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

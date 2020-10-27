@@ -1,4 +1,4 @@
-﻿@model biz.dfch.CS.SampleIPA.StockManagement.API.Models.Products
+﻿@model biz.dfch.CS.SampleIPA.StockManagement.Models.EditViewModel
 
 @{
     ViewData["Title"] = "Produkt Liste";
@@ -6,33 +6,38 @@
 
 <h1>Bearbeiten</h1>
 
-<h4>Produkt @Html.DisplayFor(m => m.Name)</h4>
+<h4>Produkt @Html.DisplayFor(m => m.Product.Name)</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="Product.Id" />
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="Product.Name" class="control-label"></label>
+                <input asp-for="Product.Name" class="form-control" />
+                <span asp-validation-for="Product.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <p asp-for="Quantity">@Html.DisplayNameFor(model => model.MaterialNumber): @Html.DisplayFor(model => model.MaterialNumber)</p>
+                <p>@Html.DisplayNameFor(model => model.Product.MaterialNumber): @Html.DisplayFor(model => model.Product.MaterialNumber)</p>
             </div>
             <div class="form-group">
-                <p asp-for="Quantity">@Html.DisplayNameFor(model => model.Quantity): @Html.DisplayFor(model => model.Quantity)</p>
+                <p>@Html.DisplayNameFor(model => model.Product.Quantity): @Html.DisplayFor(model => model.Product.Quantity)</p>
             </div>
             <div class="form-group">
-                <label asp-for="PricePerPiece" class="control-label"></label>
-                <input asp-for="PricePerPiece" class="form-control" />
-                <span asp-validation-for="PricePerPiece" class="text-danger"></span>
+                <label asp-for="Product.PricePerPiece" class="control-label"></label>
+                <input asp-for="Product.PricePerPiece" class="form-control" />
+                <span asp-validation-for="Product.PricePerPiece" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="WeightInKg" class="control-label"></label>
-                <input asp-for="WeightInKg" class="form-control" />
-                <span asp-validation-for="WeightInKg" class="text-danger"></span>
+                <label asp-for="Product.WeightInKg" class="control-label"></label>
+                <input asp-for="Product.WeightInKg" class="form-control" />
+                <span asp-validation-for="Product.WeightInKg" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Product.Category" class="control-label"></label>
+                @Html.DropDownListFor(m => m.SelectedCategoryName, new SelectList(Model.Categories, Model.Product.Category.Name), "Kategorie Wählen ...")
+                <span asp-validation-for="Product.Category" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
