@@ -22,7 +22,11 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
 
         public IActionResult Index()
         {
-            var products = container.Products.AddQueryOption("$expand", "Category").ToList();
+            var products = GetProductsWithCategory();
+            if (default == products)
+            {
+                return View();
+            }
 
             var viewModel = new IndexViewModel
             {
@@ -110,7 +114,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
             if (ModelState.IsValid)
             {
                 // ReSharper disable once ReplaceWithSingleCallToSingle --> Reason: Single isn't supported to call on Products
-                var product = container.Products.Where(p => p.Id == id).Single();
+                var product = GetProductById(id);
                 var category = categories.Single(c => c.Name == editViewModel.SelectedCategoryName);
 
                 product.Name = editViewModel.Product.Name;
@@ -137,7 +141,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
         {
             var productWithCategory = GetProductWithCategory(id);
 
-            var bookingsWithProduct = container.Bookings.AddQueryOption("Expand", "Product");
+            var bookingsWithProduct = container.Bookings.AddQueryOption("$expand", "Product");
             var allProductBookings = bookingsWithProduct.Where(b => b.Product.Id == id).ToList();
 
             var detailsViewModel = new DetailsViewModel
@@ -166,14 +170,14 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
         public IActionResult DeleteConfirmed(int id)
         {
             // ReSharper disable once ReplaceWithSingleCallToSingle --> Reason: Single isn't supported to call on Products
-            var product = container.Products.Where(p => p.Id == id).Single();
+            var product = GetProductById(id);
 
             container.DeleteObject(product);
             try
             {
                 container.SaveChanges();
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 return RedirectToAction(nameof(Index));
             }
@@ -184,7 +188,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
         public IActionResult Book(int id)
         {
             // ReSharper disable once ReplaceWithSingleCallToSingle --> Reason: Single isn't supported to call on Products
-            var product = container.Products.Where(p => p.Id == id).Single();
+            var product = GetProductById(id);
 
             var bookViewModel = new BookViewModel 
             {
@@ -208,9 +212,9 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
             if(default == bookViewModel.BookingAction) { /* WRONG */ }
 
             // ReSharper disable once ReplaceWithSingleCallToSingle --> Reason: Single isn't supported to call on Products
-            var product = container.Products.Where(p => p.Id == id).Single();
-           
-            if(bookViewModel.BookingAction == "Entfernen")
+            var product = GetProductById(id);
+
+            if (bookViewModel.BookingAction == "Entfernen")
             {
                 if(product.Quantity < bookViewModel.Amount)
                 {
@@ -245,16 +249,25 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
 
         public Products GetProductWithCategory(int id)
         {
-            var products = container.Products.AddQueryOption("$expand", "Category").ToList();
-            if(!products.Any())
-            {
-                return default;
-            }
-            
+            var products = GetProductsWithCategory();
+
             // ReSharper disable once ReplaceWithSingleCallToSingle --> Reason: Single isn't supported to call on Products
-            var product = products.Where(p => p.Id == id).Single();
+            var product = products?.Where(p => p.Id == id).Single();
 
             return product;
+        }
+
+        public List<Products> GetProductsWithCategory()
+        {
+            var products = container.Products.AddQueryOption("$expand", "Category").ToList();
+
+            return !products.Any() ? default : products;
+        }
+
+        public Products GetProductById(int id)
+        {
+            // ReSharper disable once ReplaceWithSingleCallToSingle --> Reason: Single isn't supported to call on Products
+            return container.Products.Where(p => p.Id == id).Single();
         }
     }
 }
