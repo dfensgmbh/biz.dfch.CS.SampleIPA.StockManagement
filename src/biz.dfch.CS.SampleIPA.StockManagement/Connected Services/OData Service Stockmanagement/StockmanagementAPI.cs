@@ -24,7 +24,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generation date: 27/10/2020 15:41:31
+// Generation date: 28/10/2020 15:42:56
 namespace biz.dfch.CS.SampleIPA.StockManagement.API.Models
 {
     /// <summary>

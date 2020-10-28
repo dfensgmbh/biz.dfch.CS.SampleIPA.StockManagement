@@ -25,6 +25,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Tests
     {
         public Products ExpectedProduct = new Products
         {
+            Id = 17,
             Name = "TestProduct",
             MaterialNumber = "TestMaterialNumber",
             Quantity = 0,
@@ -35,7 +36,6 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Tests
             {
                 Name = "Diverses"
             }
-            
         };
 
         [TestMethod]
@@ -47,11 +47,17 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Tests
 
             // Act
             var result = sut.GetProductWithCategory(productId);
-            Assert.IsTrue(result.Equals(ExpectedProduct));
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.AreEqual(ExpectedProduct, result);
+            Assert.AreEqual(ExpectedProduct.Id, result.Id);
+            Assert.AreEqual(ExpectedProduct.Name, result.Name);
+            Assert.AreEqual(ExpectedProduct.MaterialNumber, result.MaterialNumber);
+            Assert.AreEqual(ExpectedProduct.Quantity, result.Quantity);
+            Assert.AreEqual(ExpectedProduct.PricePerPiece, result.PricePerPiece);
+            Assert.AreEqual(ExpectedProduct.WeightInKg, result.WeightInKg);
+            Assert.AreEqual(ExpectedProduct.CategoryId, result.CategoryId);
+            Assert.AreEqual(ExpectedProduct.Category.Name, result.Category.Name);
         }
 
         [TestMethod]
@@ -66,19 +72,12 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Tests
 
             // Assert
             Assert.IsNotNull(result);
-        }
-
-        [TestMethod]
-        public void GetProductsWithCategoryReturnsAllProductsAndTheirCategory()
-        {
-            // Arrange
-            var sut = new ProductsController();
-
-            // Act
-            var result = sut.GetProductsWithCategory();
-
-            // Assert
-            Assert.IsNotNull(result);
+            Assert.AreEqual(ExpectedProduct.Id, result.Id);
+            Assert.AreEqual(ExpectedProduct.Name, result.Name);
+            Assert.AreEqual(ExpectedProduct.MaterialNumber, result.MaterialNumber);
+            Assert.AreEqual(ExpectedProduct.Quantity, result.Quantity);
+            Assert.AreEqual(ExpectedProduct.PricePerPiece, result.PricePerPiece);
+            Assert.AreEqual(ExpectedProduct.WeightInKg, result.WeightInKg);
         }
     }
 }
