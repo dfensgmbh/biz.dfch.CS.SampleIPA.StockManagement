@@ -11,8 +11,8 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
 {
     public class ProductsController : Controller
     {
-        private Container container;
-        private IEnumerable<Categories> categories;
+        private readonly Container container;
+        private readonly IEnumerable<Categories> categories;
 
         public ProductsController()
         {
@@ -51,7 +51,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Products product, [Bind("SelectedCategoryName")] string selectedCategoryName)
         {
-            var selectedCategory = categories.Where(c => c.Name == selectedCategoryName).Single();
+            var selectedCategory = categories.Single(c => c.Name == selectedCategoryName);
             product.Category = selectedCategory;
             product.CategoryId = selectedCategory.Id;
 
@@ -109,8 +109,9 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
 
             if (ModelState.IsValid)
             {
+                // ReSharper disable once ReplaceWithSingleCallToSingle --> Reason: Single isn't supported to call on Products
                 var product = container.Products.Where(p => p.Id == id).Single();
-                var category = categories.Where(c => c.Name == editViewModel.SelectedCategoryName).Single();
+                var category = categories.Single(c => c.Name == editViewModel.SelectedCategoryName);
 
                 product.Name = editViewModel.Product.Name;
                 product.PricePerPiece = editViewModel.Product.PricePerPiece;
@@ -164,6 +165,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
+            // ReSharper disable once ReplaceWithSingleCallToSingle --> Reason: Single isn't supported to call on Products
             var product = container.Products.Where(p => p.Id == id).Single();
 
             container.DeleteObject(product);
@@ -181,6 +183,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
 
         public IActionResult Book(int id)
         {
+            // ReSharper disable once ReplaceWithSingleCallToSingle --> Reason: Single isn't supported to call on Products
             var product = container.Products.Where(p => p.Id == id).Single();
 
             var bookViewModel = new BookViewModel 
@@ -203,7 +206,8 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
             }
 
             if(default == bookViewModel.BookingAction) { /* WRONG */ }
-           
+
+            // ReSharper disable once ReplaceWithSingleCallToSingle --> Reason: Single isn't supported to call on Products
             var product = container.Products.Where(p => p.Id == id).Single();
            
             if(bookViewModel.BookingAction == "Entfernen")
@@ -246,12 +250,9 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
             {
                 return default;
             }
-
-            var product = products.Where(p => p.Id == id)?.Single();
-            if (default == product)
-            {
-                return default;
-            }
+            
+            // ReSharper disable once ReplaceWithSingleCallToSingle --> Reason: Single isn't supported to call on Products
+            var product = products.Where(p => p.Id == id).Single();
 
             return product;
         }
