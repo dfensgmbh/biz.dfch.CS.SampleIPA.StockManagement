@@ -71,6 +71,11 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Products product, [Bind("SelectedCategoryName")] string selectedCategoryName)
         {
+            if (default == selectedCategoryName)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
             var selectedCategory = categories.Single(c => c.Name == selectedCategoryName);
             product.Category = selectedCategory;
             product.CategoryId = selectedCategory.Id;

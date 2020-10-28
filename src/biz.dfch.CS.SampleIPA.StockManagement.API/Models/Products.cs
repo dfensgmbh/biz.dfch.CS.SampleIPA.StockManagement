@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace biz.dfch.CS.SampleIPA.StockManagement.API.Models
@@ -23,10 +24,14 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Models
         public int Id { get; set; }
 
         [Column(TypeName = "nvarchar(50)")]
+        [Required]
         public string Name { get; set; }
 
         [Column(TypeName = "nvarchar(50)")]
+        [Required]
         public string MaterialNumber { get; set; }
+
+        [Required]
         public int Quantity { get; set; }
 
         [Column(TypeName = "decimal(10,2)")]
