@@ -1,55 +1,72 @@
-﻿@model biz.dfch.CS.SampleIPA.StockManagement.Models.EditViewModel
+﻿@*
+    * Copyright 2020 d-fens GmbH
+    *
+    * Licensed under the Apache License, Version 2.0 (the "License");
+    * you may not use this file except in compliance with the License.
+    * You may obtain a copy of the License at
+    *
+    * http://www.apache.org/licenses/LICENSE-2.0
+    *
+    * Unless required by applicable law or agreed to in writing, software
+    * distributed under the License is distributed on an "AS IS" BASIS,
+    * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    * See the License for the specific language governing permissions and
+    * limitations under the License.
+    */*@
 
-@{
-    ViewData["Title"] = "Produkt Liste";
-}
 
-<h1>Bearbeiten</h1>
+@model biz.dfch.CS.SampleIPA.StockManagement.Models.EditViewModel
 
-<h4>Produkt @Html.DisplayFor(m => m.Product.Name)</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Product.Id" />
-            <div class="form-group">
-                <label asp-for="Product.Name" class="control-label"></label>
-                <input asp-for="Product.Name" class="form-control" />
-                <span asp-validation-for="Product.Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <p>@Html.DisplayNameFor(model => model.Product.MaterialNumber): @Html.DisplayFor(model => model.Product.MaterialNumber)</p>
-            </div>
-            <div class="form-group">
-                <p>@Html.DisplayNameFor(model => model.Product.Quantity): @Html.DisplayFor(model => model.Product.Quantity)</p>
-            </div>
-            <div class="form-group">
-                <label asp-for="Product.PricePerPiece" class="control-label"></label>
-                <input asp-for="Product.PricePerPiece" class="form-control" />
-                <span asp-validation-for="Product.PricePerPiece" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Product.WeightInKg" class="control-label"></label>
-                <input asp-for="Product.WeightInKg" class="form-control" />
-                <span asp-validation-for="Product.WeightInKg" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Product.Category" class="control-label"></label>
-                @Html.DropDownListFor(m => m.SelectedCategoryName, new SelectList(Model.Categories, Model.Product.Category.Name), "Kategorie Wählen ...")
-                <span asp-validation-for="Product.Category" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+    @{
+        ViewData["Title"] = "Produkt Liste";
+    }
+
+    <h1>Bearbeiten</h1>
+
+    <h4>Produkt @Html.DisplayFor(m => m.Product.Name)</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Product.Id" />
+                <div class="form-group">
+                    <label asp-for="Product.Name" class="control-label"></label>
+                    <input asp-for="Product.Name" class="form-control" />
+                    <span asp-validation-for="Product.Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <p>@Html.DisplayNameFor(model => model.Product.MaterialNumber): @Html.DisplayFor(model => model.Product.MaterialNumber)</p>
+                </div>
+                <div class="form-group">
+                    <p>@Html.DisplayNameFor(model => model.Product.Quantity): @Html.DisplayFor(model => model.Product.Quantity)</p>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Product.PricePerPiece" class="control-label"></label>
+                    <input asp-for="Product.PricePerPiece" class="form-control" />
+                    <span asp-validation-for="Product.PricePerPiece" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Product.WeightInKg" class="control-label"></label>
+                    <input asp-for="Product.WeightInKg" class="form-control" />
+                    <span asp-validation-for="Product.WeightInKg" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Product.Category" class="control-label"></label>
+                    @Html.DropDownListFor(m => m.SelectedCategoryName, new SelectList(Model.Categories, Model.Product.Category.Name), "Kategorie Wählen ...")
+                    <span asp-validation-for="Product.Category" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Zurück zur Liste</a>
-</div>
+    <div>
+        <a asp-action="Index">Zurück zur Liste</a>
+    </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

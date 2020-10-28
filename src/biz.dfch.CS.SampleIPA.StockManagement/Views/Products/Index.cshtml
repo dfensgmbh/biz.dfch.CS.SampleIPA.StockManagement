@@ -1,64 +1,80 @@
-﻿@model biz.dfch.CS.SampleIPA.StockManagement.Models.IndexViewModel
+﻿@*
+    * Copyright 2020 d-fens GmbH
+    *
+    * Licensed under the Apache License, Version 2.0 (the "License");
+    * you may not use this file except in compliance with the License.
+    * You may obtain a copy of the License at
+    *
+    * http://www.apache.org/licenses/LICENSE-2.0
+    *
+    * Unless required by applicable law or agreed to in writing, software
+    * distributed under the License is distributed on an "AS IS" BASIS,
+    * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    * See the License for the specific language governing permissions and
+    * limitations under the License.
+    */*@
 
-@{
-    ViewData["Title"] = "Produkt Liste";
-}
+@model biz.dfch.CS.SampleIPA.StockManagement.Models.IndexViewModel
 
-<a asp-action="Create">Neues Produkt Erstellen</a>
+    @{
+        ViewData["Title"] = "Produkt Liste";
+    }
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Products[0].Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Products[0].MaterialNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Products[0].Quantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Products[0].PricePerPiece)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Products[0].WeightInKg)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Products[0].Category)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Products)
-        {
+    <a asp-action="Create">Neues Produkt Erstellen</a>
+
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MaterialNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Quantity)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PricePerPiece)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.WeightInKg)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Category.Name)
-                </td>
-                <td>
-                    |
-                    <a asp-action="Book" asp-route-id="@item.Id">Buchen</a> |
-                    <a asp-action="Edit" asp-route-id="@item.Id">Bearbeiten</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Löschen</a>
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Products[0].Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Products[0].MaterialNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Products[0].Quantity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Products[0].PricePerPiece)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Products[0].WeightInKg)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Products[0].Category)
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Products)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaterialNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PricePerPiece)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WeightInKg)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category.Name)
+                    </td>
+                    <td>
+                        |
+                        <a asp-action="Book" asp-route-id="@item.Id">Buchen</a> |
+                        <a asp-action="Edit" asp-route-id="@item.Id">Bearbeiten</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Löschen</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

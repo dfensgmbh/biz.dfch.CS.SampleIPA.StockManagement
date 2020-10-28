@@ -1,73 +1,89 @@
-﻿@model biz.dfch.CS.SampleIPA.StockManagement.Models.DetailsViewModel
+﻿@*
+    * Copyright 2020 d-fens GmbH
+    *
+    * Licensed under the Apache License, Version 2.0 (the "License");
+    * you may not use this file except in compliance with the License.
+    * You may obtain a copy of the License at
+    *
+    * http://www.apache.org/licenses/LICENSE-2.0
+    *
+    * Unless required by applicable law or agreed to in writing, software
+    * distributed under the License is distributed on an "AS IS" BASIS,
+    * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    * See the License for the specific language governing permissions and
+    * limitations under the License.
+    */*@
 
-<h1>Details</h1>
-<div>
-    <h4>Produkt @Html.DisplayFor(model => model.Product.Name)</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Product.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Product.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Product.MaterialNumber)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Product.MaterialNumber)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Product.Quantity)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Product.Quantity)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Product.PricePerPiece)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Product.PricePerPiece)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Product.WeightInKg)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Product.WeightInKg)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Product.Category)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Product.Category.Name)
-        </dd>
-    </dl>
+@model biz.dfch.CS.SampleIPA.StockManagement.Models.DetailsViewModel
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Bookings[0].Amount)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Bookings[0].DataTime)
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Bookings)
-            {
+    <h1>Details</h1>
+    <div>
+        <h4>Produkt @Html.DisplayFor(model => model.Product.Name)</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Product.Name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Product.Name)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Product.MaterialNumber)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Product.MaterialNumber)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Product.Quantity)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Product.Quantity)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Product.PricePerPiece)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Product.PricePerPiece)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Product.WeightInKg)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Product.WeightInKg)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Product.Category)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Product.Category.Name)
+            </dd>
+        </dl>
+
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Amount)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DataTime)
-                    </td
+                    <th>
+                        @Html.DisplayNameFor(model => model.Bookings[0].Amount)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Bookings[0].DataTime)
+                    </th>
                 </tr>
-            }
-        </tbody>
-    </table>
-    |
-    <a asp-action="Index">Zurück zur Liste</a>
-</div>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Bookings)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Amount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DataTime)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        |
+        <a asp-action="Index">Zurück zur Liste</a>
+    </div>

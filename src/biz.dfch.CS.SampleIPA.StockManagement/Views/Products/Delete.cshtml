@@ -1,51 +1,67 @@
-﻿@model biz.dfch.CS.SampleIPA.StockManagement.API.Models.Products
+﻿@*
+    * Copyright 2020 d-fens GmbH
+    *
+    * Licensed under the Apache License, Version 2.0 (the "License");
+    * you may not use this file except in compliance with the License.
+    * You may obtain a copy of the License at
+    *
+    * http://www.apache.org/licenses/LICENSE-2.0
+    *
+    * Unless required by applicable law or agreed to in writing, software
+    * distributed under the License is distributed on an "AS IS" BASIS,
+    * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    * See the License for the specific language governing permissions and
+    * limitations under the License.
+    */*@
 
-<h1>Löschen</h1>
-<div>
-    <h4>Produkt @Html.DisplayFor(model => model.Name)</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.MaterialNumber)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.MaterialNumber)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PricePerPiece)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PricePerPiece)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.WeightInKg)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.WeightInKg)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Category)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Category.Name)
-        </dd>
-    </dl>
+@model biz.dfch.CS.SampleIPA.StockManagement.API.Models.Products
 
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Zurück zur Liste</a>
-    </form>
-</div>
+    <h1>Löschen</h1>
+    <div>
+        <h4>Produkt @Html.DisplayFor(model => model.Name)</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.MaterialNumber)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.MaterialNumber)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Quantity)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Quantity)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PricePerPiece)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PricePerPiece)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.WeightInKg)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.WeightInKg)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Category)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Category.Name)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a asp-action="Index">Zurück zur Liste</a>
+        </form>
+    </div>

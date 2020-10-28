@@ -1,32 +1,48 @@
-﻿@model biz.dfch.CS.SampleIPA.StockManagement.Models.BookViewModel
+﻿@*
+    * Copyright 2020 d-fens GmbH
+    *
+    * Licensed under the Apache License, Version 2.0 (the "License");
+    * you may not use this file except in compliance with the License.
+    * You may obtain a copy of the License at
+    *
+    * http://www.apache.org/licenses/LICENSE-2.0
+    *
+    * Unless required by applicable law or agreed to in writing, software
+    * distributed under the License is distributed on an "AS IS" BASIS,
+    * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    * See the License for the specific language governing permissions and
+    * limitations under the License.
+    */*@
 
-<h1>Buchen</h1>
+@model biz.dfch.CS.SampleIPA.StockManagement.Models.BookViewModel
 
-<h4>Produkt @Html.DisplayFor(m => m.Name)</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Book">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Amount" class="control-label"></label>
-                <input asp-for="Amount" class="form-control" />
-                <span asp-validation-for="Amount" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BookingAction" class="control-label"></label>
-                @Html.RadioButtonFor(m => m.BookingAction, "Hinzufügen") Hinzufügen
-                @Html.RadioButtonFor(m => m.BookingAction, "Entfernen") Entfernen
-                <span asp-validation-for="BookingAction" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+    <h1>Buchen</h1>
+
+    <h4>Produkt @Html.DisplayFor(m => m.Name)</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Book">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="Amount" class="control-label"></label>
+                    <input asp-for="Amount" class="form-control" />
+                    <span asp-validation-for="Amount" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BookingAction" class="control-label"></label>
+                    @Html.RadioButtonFor(m => m.BookingAction, "Hinzufügen") Hinzufügen
+                    @Html.RadioButtonFor(m => m.BookingAction, "Entfernen") Entfernen
+                    <span asp-validation-for="BookingAction" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Zurück zur Liste</a>
-</div> 
+    <div>
+        <a asp-action="Index">Zurück zur Liste</a>
+    </div> 
