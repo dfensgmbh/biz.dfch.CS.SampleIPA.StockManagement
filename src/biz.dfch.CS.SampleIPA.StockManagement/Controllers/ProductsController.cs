@@ -242,7 +242,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
         public Products GetProductWithCategory(int id)
         {
             var products = container.Products.AddQueryOption("$expand", "Category").ToList();
-            if(default == products)
+            if(!products.Any())
             {
                 return default;
             }

@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <StartupObject>biz.dfch.CS.SampleIPA.StockManagement.API.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
