@@ -95,6 +95,11 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Controllers
                 return NotFound();
             }
 
+            if(_context.Bookings.Any(b => b.ProductId == key))
+            {
+                return BadRequest();
+            }
+
             _context.Products.Remove(product);
 
             try
@@ -103,12 +108,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.API.Controllers
             }
             catch(DbUpdateException ex)
             {
-                if(ex.InnerException.HResult == -2146232060)
-                {
-                    return BadRequest();
-                }
-
-                return NoContent();
+                return Conflict(ex.Message);
             }
 
             return NoContent();

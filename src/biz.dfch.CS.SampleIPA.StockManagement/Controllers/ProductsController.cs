@@ -167,17 +167,13 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
             var product = container.Products.Where(p => p.Id == id).Single();
 
             container.DeleteObject(product);
-
             try
             {
                 container.SaveChanges();
             }
             catch(Exception ex)
             {
-                if(ex.HResult == -2146233079)
-                {
-                    // Product has Booking
-                }
+                return RedirectToAction(nameof(Index));
             }
 
             return RedirectToAction(nameof(Index));
@@ -214,7 +210,8 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
             {
                 if(product.Quantity < bookViewModel.Amount)
                 {
-                    // Amount zu gross 
+                    // Amount zu Gross
+                    return RedirectToAction(nameof(Index));
                 }
                 else
                 {
