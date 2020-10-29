@@ -224,7 +224,6 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
             {
                 Id = id,
                 Name = product.Name,
-                CurrentQuantity = product.Quantity
             };
 
             return View(bookViewModel);
@@ -240,6 +239,11 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
             }
 
             if (default == bookViewModel.BookingAction)
+            {
+                return RedirectToAction(nameof(Book));
+            }
+
+            if (bookViewModel.Amount <= 0)
             {
                 return RedirectToAction(nameof(Book));
             }
