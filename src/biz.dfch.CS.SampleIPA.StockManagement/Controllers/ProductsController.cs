@@ -29,6 +29,10 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
     {
         private readonly Container container;
         private readonly IEnumerable<Categories> categories;
+        private readonly string ExpandQueryOption = "$expand";
+        private readonly string Entfernen = "Entfernen";
+        private readonly string Product = "Product";
+        private readonly string Category = "Category";
 
         public ProductsController()
         {
@@ -71,9 +75,9 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Products product, [Bind("SelectedCategoryName")] string selectedCategoryName)
         {
-            if (default == selectedCategoryName)
+            if (default == product.Name || default == product.MaterialNumber || default == selectedCategoryName)
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Create));
             }
 
             var selectedCategory = categories.Single(c => c.Name == selectedCategoryName);
@@ -127,9 +131,14 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, EditViewModel editViewModel)
         {
+            if (default == editViewModel.Product.Name || default == editViewModel.SelectedCategoryName)
+            {
+                return RedirectToAction(nameof(Edit));
+            }
+
             if (id != editViewModel.Product.Id)
             {
-                return NotFound();
+                return BadRequest();
             }
 
             if (ModelState.IsValid)
@@ -162,7 +171,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
         {
             var productWithCategory = GetProductWithCategory(id);
 
-            var bookingsWithProduct = container.Bookings.AddQueryOption("$expand", "Product");
+            var bookingsWithProduct = container.Bookings.AddQueryOption(ExpandQueryOption, Product);
             var allProductBookings = bookingsWithProduct.Where(b => b.Product.Id == id).ToList();
 
             var detailsViewModel = new DetailsViewModel
@@ -200,7 +209,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
             }
             catch(Exception)
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Delete));
             }
 
             return RedirectToAction(nameof(Index));
@@ -227,26 +236,26 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
         {
             if(id != bookViewModel.Id)
             {
-                // Wrong
+                return BadRequest();
             }
 
-            if(default == bookViewModel.BookingAction) { /* WRONG */ }
+            if (default == bookViewModel.BookingAction)
+            {
+                return RedirectToAction(nameof(Book));
+            }
 
             // ReSharper disable once ReplaceWithSingleCallToSingle --> Reason: Single isn't supported to call on Products
             var product = GetProductById(id);
 
-            if (bookViewModel.BookingAction == "Entfernen")
+            if (bookViewModel.BookingAction == Entfernen)
             {
                 if(product.Quantity < bookViewModel.Amount)
                 {
-                    // Amount zu Gross
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(Book));
                 }
-                else
-                {
-                    product.Quantity -= bookViewModel.Amount;
-                    bookViewModel.Amount *= -1;
-                }
+
+                product.Quantity -= bookViewModel.Amount;
+                bookViewModel.Amount *= -1;
             }
             else
             {
@@ -280,7 +289,7 @@ namespace biz.dfch.CS.SampleIPA.StockManagement.Controllers
 
         public List<Products> GetProductsWithCategory()
         {
-            var products = container.Products.AddQueryOption("$expand", "Category").ToList();
+            var products = container.Products.AddQueryOption(ExpandQueryOption, Category).ToList();
 
             return !products.Any() ? default : products;
         }

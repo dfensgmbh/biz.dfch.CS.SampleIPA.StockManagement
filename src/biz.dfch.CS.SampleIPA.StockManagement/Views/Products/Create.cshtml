@@ -26,35 +26,29 @@
             <div class="form-group">
                 <label asp-for="Product.Name" class="control-label"></label>
                 <input asp-for="Product.Name" class="form-control" />
-                <span asp-validation-for="Product.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Product.MaterialNumber" class="control-label"></label>
                 <input asp-for="Product.MaterialNumber" class="form-control" />
-                <span asp-validation-for="Product.MaterialNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Product.Quantity" class="control-label"></label>
                 <input asp-for="Product.Quantity" class="form-control" />
-                <span asp-validation-for="Product.Quantity" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Product.PricePerPiece" class="control-label"></label>
                 <input asp-for="Product.PricePerPiece" class="form-control" />
-                <span asp-validation-for="Product.PricePerPiece" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Product.WeightInKg" class="control-label"></label>
                 <input asp-for="Product.WeightInKg" class="form-control" />
-                <span asp-validation-for="Product.WeightInKg" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Product.Category" class="control-label"></label>
                 @Html.DropDownListFor(m => m.SelectedCategoryName, new SelectList(Model.Categories), "Kategorie Wählen ...")
-                <span asp-validation-for="Product.Category" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Bestätigen" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -63,7 +57,3 @@
 <div>
     <a asp-action="Index">Zurück zur Liste</a>
 </div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
